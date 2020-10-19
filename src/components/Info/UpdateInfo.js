@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import styles from "./Info.module.css"
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {createInfo} from "../../actions/InfoActions"
+import {getStoredInfo, createInfo} from "../../actions/InfoActions"
+import PropTypes from "prop-types"
+import {connect} from "react-redux"
+import errorReducer from '../../reducers/errorReducer'
 
-class AddInfo extends Component {
+
+
+class UpdateInfo extends Component {
 
     constructor(){
         super()
-        this.state={
+          this.state = { 
+            id: "",
             firstName: "",
             lastName: "",
             occupation: "",
-            phone: "",
             email: "",
+            phone: "",
             summary: "",
             created: "",
             lastUpdated: "",
@@ -22,17 +26,52 @@ class AddInfo extends Component {
             state: "",
             country:"",
             errors: {}
-        };
-
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
     }
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+}
 
-    //Life cycle hooks
-    UNSAFE_componentWillReceiveProps(nextProps) {
-      if (nextProps.errors) {
-        this.setState({errors: nextProps.errors})
-      }
+UNSAFE_componentWillReceiveProps(nextProps){
+    if(nextProps.errors){
+        this.setState({errors:nextProps.errors})
+    }
+    const { 
+    id,
+    firstName,
+    lastName,
+    occupation,
+    email,
+    summary,
+    created,
+    lastUpdated,
+    street,
+    phone,
+    city,
+    state,
+    country,
+    } = nextProps.info;
+
+    this.setState({
+    id,
+    firstName,
+    lastName,
+    occupation,
+    email,
+    summary,
+    created,
+    phone,
+    lastUpdated,
+    street,
+    city,
+    state,
+    country,
+    })
+}
+
+
+    componentDidMount(){
+        const {id} = this.props.match.params;
+        this.props.getStoredInfo(id, this.props.history);
     }
 
     onChange(e){
@@ -40,13 +79,15 @@ class AddInfo extends Component {
     }
 
     onSubmit(e){
-        e.preventDefault();
-        const newInfo = {
+        e.preventDefault()
+
+        const updateInfo = {
+            id: this.state.id,
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             occupation: this.state.occupation,
-            phone: this.state.phone,
             email: this.state.email,
+            phone: this.state.phone,
             summary: this.state.summary,
             created: this.state.created,
             lastUpdated: this.state.lastUpdated,
@@ -54,22 +95,18 @@ class AddInfo extends Component {
             city: this.state.city,
             state: this.state.state,
             country:this.state.country,
-        }
-
-        this.props.createInfo(newInfo, this.props.history)
+        };
+        this.props.createInfo(updateInfo, this.props.history)
     }
     render() {
-      const {errors} =this.state
+        const {errors} =this.state
         return (
-
             <div>
-          
-    
-            <div className={styles.info}>
+               <div className={styles.info}>
               <div className={styles.container}>
                 <div className={styles.cover}>
                   <div className={styles.col}>
-                    <h4>Create User Info</h4>
+                    <h4>Update User Info</h4>
                     <hr />
                     <form onSubmit={this.onSubmit}>
                       <div className={styles.row}>
@@ -96,14 +133,15 @@ class AddInfo extends Component {
                         />
                         <p  className={styles.invalid}>{errors.lastName}</p>
                       </div>
-                      <div className={styles.row}>
+                   <div className={styles.row}>
                         <input
                           type="text"
                           className={errors.phone ? styles.invalid : styles.input}
                           placeholder="Phone Number"
                           name="phone"
                           value = {this.state.phone}
-                          onChange={this.onChange}
+                          disabled
+
                         />
                         <p className={styles.invalid}>{errors.phone}</p>
 
@@ -133,7 +171,7 @@ class AddInfo extends Component {
                       </div>
                       <div className={styles.row}>
                         <textarea
-                        type="text"
+                        type="textarea"
                           className={errors.summary ? styles.invalid : styles.input}
                           placeholder="Job Description"
                           name="summary"
@@ -189,7 +227,7 @@ class AddInfo extends Component {
                       </div>
                       
                       
-                      <h4>Start Date</h4>
+                      <h4>Date Created</h4>
                       <div className={styles.row}>
                         <input
                           type="date"
@@ -199,7 +237,7 @@ class AddInfo extends Component {
                           onChange={this.onChange}
                         />
                       </div>
-                      <h4>Estimated End Date</h4>
+                      <h4>Date Updated</h4>
                       <div className={styles.row}>
                         <input
                           type="date"
@@ -218,17 +256,22 @@ class AddInfo extends Component {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
         )
     }
 }
 
-AddInfo.propTypes = {
-  createInfo: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+UpdateInfo.propTypes = {
+    getStoredInfo: PropTypes.func.isRequired,
+    info: PropTypes.object.isRequired,
+    createInfo: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired
+
 }
 
 const mapStateToProps = state => ({
-  errors: state.errors
+    info: state.info.info,
+    errors: state.errors
 })
-export default connect(mapStateToProps, {createInfo})(AddInfo);
+
+export default connect(mapStateToProps, {getStoredInfo, createInfo}) (UpdateInfo)
