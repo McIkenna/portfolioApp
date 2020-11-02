@@ -11,12 +11,21 @@ import AddWork from './components/Work/AddWork';
 import UpdateWork from './components/Work/UpdateWork';
 import AddProject from './components/Project/AddProject';
 import UpdateProject from './components/Project/UpdateProject';
+import AddSkill from './components/Skill/AddSkill';
+import ImageUploader from './components/ProfileImage/ImageUploader';
+
+import styles from './app.module.css'
+import Footer from './components/Layout/Footer';
+import contactForm from './components/Contact/contactForm';
+import AddTask from './components/projectTask/AddTask';
+import AddImage from './components/ProfileImage/AddImage';
 
 function App() {
   return (
     <Provider store={store}>
+       
     <Router>
-    <div>
+    <div className={styles.body}>
       <Header/>
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/addInfo" component={AddInfo} />
@@ -26,10 +35,15 @@ function App() {
       <Route exact path="/updateWork/:id" component={UpdateWork} />
       <Route exact path="/addProject" component={AddProject} />
       <Route exact path="/updateProject/:id"  component={UpdateProject} />
-
-
-    </div>
+      <Route exact path="/addSkill" component={AddSkill} />
+      <Route exact path="/addImg" component={AddImage} />
+      <Route exact path="/contactForm" component={contactForm} />
+      <Route exact path="/addTask" component={AddTask} />
+      <Footer />
+      </div>
+    
     </Router>
+ 
     </Provider>
   );
 }

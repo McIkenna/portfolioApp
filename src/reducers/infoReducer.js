@@ -3,7 +3,8 @@ import {DELETE_INFO, GET_INFO, GET_STOREDINFO} from "../actions/types"
 
 const initialState = {
     infos: [],
-    info: {}
+    info: {},
+  
 };
 
 export default function(state = initialState, action){
@@ -25,10 +26,10 @@ export default function(state = initialState, action){
                 ...state,
                 infos: state.infos.filter(info => info.phone !== action.payload )
             }
+      
         default:
             return state;
     };
 
         
-
 }

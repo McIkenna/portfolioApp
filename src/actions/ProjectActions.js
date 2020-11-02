@@ -1,5 +1,5 @@
 import axios from "axios"
-import { DELETE_PROJECT, GET_ERRORS, GET_PROJECT, GET_PROJECTS } from "./types";
+import { DELETE_PROJECT, GET_ERRORS, GET_PROJECT, GET_PROJECTS, UPLOAD_TASK, GET_TASKS } from "./types";
 
 export const createProject = (project, history) => async dispatch => {
     try {
@@ -47,4 +47,29 @@ export const getStoredProject = (id, history) => async dispatch => {
         history.push("/dashboard");
         
     }
+}
+
+export const uploadTask = (task, history) => async dispatch => {
+    try{
+        const res = await axios.post("api/file/uploadFile", task)
+        history.push("/dashboard");
+        dispatch({
+            type: GET_ERRORS,
+            payload: {}
+        })
+
+    }catch(error){
+        dispatch({
+            type: GET_ERRORS,
+            payload: error.response.data
+        })
+    }
+}
+
+export const getStoredTasks = () => async dispatch =>{
+        const res = await axios.get(`/api/file/uploads/all`)
+    dispatch({
+        type: GET_TASKS,
+        payload: res.data
+    })
 }

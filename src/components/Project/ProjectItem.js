@@ -13,24 +13,21 @@ class ProjectItem extends Component {
 		const {project} = this.props;
         return (
             <div>
-                <div className={classes.coursesContainer}>
-	    <div className={classes.course}>
-		<div className={classes.coursePreview}>
-			<h2>{project.projectTitle}</h2>
-	
-		</div>
-		    <div className={classes.courseInfo}>
-			<div className={classes.progressContainer}>
-				<div className={classes.progress}></div>
-				<span className={classes.progressText}>
-					{project.progressrate}
-				</span>
+        <div className={classes.coursecontainer}>
+	    <div className={classes.courses}>
+			<div className={classes.course_item}>
+			<div className={classes.coursePreview}>
+			<div className={classes.course_image}><img src="https://picsum.photos/500/300/?image=10" alt="car"/>
+        	</div>
 			</div>
+		    <div className={classes.courseInfo}>
+			<h2>{project.projectTitle}</h2>
 			<h6>{project.keyRole}</h6>
-		<h2>{project.projectSummary}</h2>
+		<h3>{project.projectSummary}</h3>
 		<Link to={`/updateProject/${project.projectIdentifier}`}><button className={classes.button}>Update</button></Link>
 			<button className={classes.button} onClick={this.onDeleteClick.bind(this, project.projectIdentifier)}>Delete</button>
 		</div>
+	</div>
 	</div>
     </div>
             </div>

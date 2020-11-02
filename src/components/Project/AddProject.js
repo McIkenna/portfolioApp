@@ -56,7 +56,7 @@ class AddProject extends Component {
               <div className={styles.container}>
                 <div className={styles.cover}>
                   <div className={styles.col}>
-                    <h4>Create User Info</h4>
+                    <h4>Create Project Undertaken</h4>
                     <hr />
                     <form onSubmit={this.onSubmit}>
                     <div className={styles.row}>
@@ -125,7 +125,7 @@ class AddProject extends Component {
                         <option value={1}>25</option>
                         <option value={2}>50</option>
                         <option value={3}>75</option>
-                        <option value={3}>100</option>
+                        <option value={4}>100</option>
                         </select>
                         <p className={styles.invalid}>{errors.progressrate}</p>
 
@@ -176,6 +176,7 @@ class AddProject extends Component {
         )
     }
 }
+
 AddProject.propTypes = {
     createProject: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired

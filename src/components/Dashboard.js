@@ -1,19 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import styles from "./Dashboard.module.css"
-import CreateInfo from './Info/CreateInfoButton'
+
 import {connect} from "react-redux";
 import {getInfo} from "../actions/InfoActions"
 import PropTypes from "prop-types";
 import InfoItem from "./Info/InfoItem"
-import CreateEduButton from './Education/CreateEduButton';
 import EducationItem from './Education/EducationItem';
 import {getAllEducation} from "../actions/EduActions"
-import CreateWorkButton from './Work/CreateWorkButton';
 import WorkItem from './Work/WorkItem';
 import {getWorks} from "../actions/WorkActions"
-import CreateProjectButton from './Project/CreateProjectButton';
 import ProjectItem from './Project/ProjectItem'
 import {getProjects} from "../actions/ProjectActions"
+import {getSkills} from "../actions/SkillAction"
+import {getStoredTasks} from "../actions/ProjectActions"
+import SkillItem from './Skill/SkillItem';
+import "aos/dist/aos.css";
+import Aos from "aos";
+import TaskItem from './projectTask/TaskItem';
+
+
 
 class Dashboard extends Component {
 
@@ -22,6 +27,8 @@ class Dashboard extends Component {
     this.props.getAllEducation();
     this.props.getWorks();
     this.props.getProjects();
+    this.props.getSkills();
+    this.props.getStoredTasks()
   }
 
     render() {
@@ -29,29 +36,36 @@ class Dashboard extends Component {
       const {educations} = this.props.education
       const {works} = this.props.work
       const {projects} = this.props.project
-     
+      const {skills} = this.props.skill
+      const {tasks} = this.props.task
+  
+
   return (
 <div className={styles.body}>
 <div className = {styles.dashbody}>
   <div className={styles.main}>
-    <h2>My PortFolio</h2>
-    <CreateInfo />
-    <CreateEduButton />
-    <CreateWorkButton />
-    <CreateProjectButton />
-    <div>
+    <div className={styles.info}>
       {infos.map(info => (
         <InfoItem key={info.id} info = {info}/>
       ))}
     </div>
-    <div>
+    <div className={styles.education}>
   {educations.map(education => (  <EducationItem key={education.id} education = {education}/>))}
   </div>
-  <div>
+ 
+  <div className={styles.education}>
   {works.map(work => (  <WorkItem key={work.id} work = {work}/>))}
   </div>
-  <div>
+  <div >
     {projects.map(project => (<ProjectItem key={project.id} project = {project} />))}
+  </div>
+  <div>
+    {tasks.map(task => <TaskItem key = {task.id} task ={task} /> )}
+  </div>
+  <div className={styles.skill}>
+    {skills.map(skill => (
+
+      <SkillItem key={skill.id} skill = {skill} /> ))}
   </div>
   </div>
 </div>
@@ -66,14 +80,18 @@ Dashboard.propTypes = {
   getInfo: PropTypes.func.isRequired,
   getAllEducation: PropTypes.func.isRequired,
   getWorks: PropTypes.func.isRequired,
-  getProjects: PropTypes.func.isRequired
+  getProjects: PropTypes.func.isRequired,
+  getSkills: PropTypes.func.isRequired,
+  getStoredTasks: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   info: state.info,
   education: state.education,
   work: state.work,
-  project: state.project
+  project: state.project,
+  skill: state.skill,
+  task: state.task
 })
 
-export default connect(mapStateToProps, {getInfo, getAllEducation, getWorks, getProjects})(Dashboard);
+export default connect(mapStateToProps, {getInfo, getAllEducation, getWorks, getProjects, getSkills, getStoredTasks})(Dashboard);

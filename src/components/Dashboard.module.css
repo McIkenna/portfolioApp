@@ -4,6 +4,7 @@
 .body {
   margin: 0;
   padding: 0;
+  background-color: white;
 }
 
 .dashbody {
@@ -33,4 +34,16 @@
   .main {
     width: 100%;
   }
+}
+
+.education {
+  display: flex;
+}
+
+.skill {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0 10%;
+  background-color: #2f3742;
+  border-top: 0.3125rem solid #1c2127;
 }

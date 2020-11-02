@@ -37,8 +37,10 @@ class AddInfo extends Component {
 
     onChange(e){
         this.setState({[e.target.name]: e.target.value})
+       
     }
-
+    
+    
     onSubmit(e){
         e.preventDefault();
         const newInfo = {
@@ -54,24 +56,28 @@ class AddInfo extends Component {
             city: this.state.city,
             state: this.state.state,
             country:this.state.country,
+            image: this.state.image
         }
 
         this.props.createInfo(newInfo, this.props.history)
+  
     }
+  
     render() {
       const {errors} =this.state
         return (
-
             <div>
-          
-    
             <div className={styles.info}>
               <div className={styles.container}>
                 <div className={styles.cover}>
                   <div className={styles.col}>
                     <h4>Create User Info</h4>
                     <hr />
-                    <form onSubmit={this.onSubmit}>
+                    <form onSubmit={this.onSubmit} >
+                    <div className={styles.row}>
+                      <input type="file" onChange={this.fileselectedHandler} />
+                    
+                      </div>
                       <div className={styles.row}>
                         <input
                           type="text"

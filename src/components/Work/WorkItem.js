@@ -14,8 +14,8 @@ class WorkItem extends Component {
         const {work} = this.props;
         return (
 <div className={classes.main}>
-  <ul className={classes.cards}>
-    <li className={classes.cards_item}>
+  <div className={classes.cards}>
+    <div className={classes.cards_item}>
       <div className={classes.card}>
         <div className={classes.card_image}><img src="https://picsum.photos/500/300/?image=10" alt="car"/>
         </div>
@@ -31,8 +31,8 @@ class WorkItem extends Component {
           <button className={classes.btn} onClick={this.onDeleteClick.bind(this, work.identifier)}>Delete</button>
         </div>
         </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
         )
     }

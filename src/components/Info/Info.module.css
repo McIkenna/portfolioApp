@@ -9,6 +9,10 @@
   border-radius: 5px;
   width: 100%;
 }
+
+.profileImage {
+  border-radius: 50%;
+}
 .container {
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -100,22 +104,25 @@ input[type="submit"]:hover {
 .Infocover {
   margin: 0;
   padding: 0;
+  background-image: url("../images/whiteBack.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .infocontainer {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  column-gap: 20px;
-  margin: 0 10%;
-  height: 500px;
-}
-.inner {
-  margin: 0 40%;
+  display: block;
 }
 
 .textcontainer {
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   padding: 5%;
+  height: 100vh;
+  min-height: 500px;
+  display: flex;
+}
+
+.textinner {
+  display: block;
+  padding: 0 5%;
 }
 .textcontainer p:nth-child(1) {
   font-family: calibri;
@@ -129,6 +136,7 @@ input[type="submit"]:hover {
   letter-spacing: 1px;
   color: #1a1a1a;
   font-size: 40px;
+  line-height: 1.5em;
 }
 .textcontainer p:nth-child(3) {
   font-family: myriad pro regular;
@@ -147,7 +155,7 @@ input[type="submit"]:hover {
   font-family: myriad pro regular;
   color: #403e3e;
   font-size: 30px;
-  line-height: 10px;
+  line-height: 3em;
 }
 .textcontainer p {
   margin: 45px 0px 25px;
@@ -161,66 +169,72 @@ input[type="submit"]:hover {
   font-weight: bold;
   font-size: 14px;
   outline: none;
-  margin: 0px 10px;
+  margin: 0px 40px;
 }
 
+.btn {
+}
 .hirebtn {
+  width: 150px;
+  height: 42px;
+  border-radius: 10px;
+  font-family: calibri;
+  font-weight: bolder;
+  font-size: 14px;
+  outline: none;
+  padding: 10px;
+  margin: 0px 40px;
   border: 2px solid #373636;
   color: #373636;
   background-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
 }
+
 .downcv {
   background-color: #0b0b0b;
   color: #fff;
   border: none;
+  cursor: pointer;
 }
 
 .updatebtn {
-  border: 2px solid #373636;
-  color: #373636;
+  border: 2px solid whitesmoke;
+  color: whitesmoke;
   background-color: transparent;
 }
 .deletebtn {
-  border: 2px solid #373636;
-  color: #373636;
+  border: 2px solid whitesmoke;
+  color: whitesmoke;
   background-color: transparent;
 }
-button:active {
-  transform: scale(1.1);
+
+.infobutton {
+  padding-top: 50px;
 }
 .aboutcontainer {
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  height: 50vh;
+  min-height: 500px;
   width: 100%;
-  height: 100%;
-  background: #ffffff;
-  margin: auto;
-  justify-content: space-evenly;
-  padding: 5%;
+  background-color: #152d42;
+  padding: 10% 20%;
 }
-.aboutcontainer img {
-  height: 250px;
-}
+
 .abouttext {
-  width: 100%;
-  height: 60%;
+  color: whitesmoke;
 }
+
 .abouttext p:nth-child(1) {
-  color: #403e3e;
   font-family: myriad pro;
   font-weight: bold;
-  font-size: 45px;
+  font-size: 2rem;
 }
+
 .abouttext p:nth-child(2) {
-  color: #3e3d3d;
   font-size: 25px;
   font-family: myriad pro;
   font-weight: bold;
-}
-.abouttext p:nth-child(3),
-.about-text p:nth-child(4) {
-  color: #7e7d7d;
-  font-family: calibri;
-  font-size: 16px;
+  line-height: 2em;
 }
 
 @media screen and (max-width: 600px) {

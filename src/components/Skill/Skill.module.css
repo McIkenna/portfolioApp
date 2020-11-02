@@ -1,10 +1,3 @@
-* {
-  box-sizing: border-box;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
 .info {
   border-radius: 5px;
   width: 100%;
@@ -97,68 +90,24 @@ input[type="submit"]:hover {
   cursor: pointer;
 }
 
-/* The Design*/
-.coursecontainer {
-  width: 100%;
-  font-family: "Quicksand", serif;
-  color: #ffffff;
+/*CSS Desing*/
+/* ANother Design */
+
+.main {
   font-style: normal;
-  font-weight: 400;
   letter-spacing: 0;
-  margin: 0;
-  padding: 0;
-  background-color: #323a45;
-  height: 100vh;
   width: 100%;
 }
 
-.courses {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  display: block;
-  padding: 10%;
+.cards {
+  list-style: none;
+  width: 100%;
+  margin: 20% 0;
 }
 
-.course_item {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.coursePreview {
-  color: #fff;
-  margin: 10%;
-}
-
-.course-info {
-  margin: 10%;
-}
-
-.course_image {
-}
-
-.courses h2 {
-  letter-spacing: 3px;
-  margin: 10px 0;
-  font-size: 4rem;
-}
-
-.courses h3 {
-  letter-spacing: 3px;
-  margin: 10px 0;
-}
-.courses h6 {
-  opacity: 0.6;
-  margin: 0;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  line-height: 3em;
-}
-
-.course-preview a {
-  color: #fff;
-  display: inline-block;
-  font-size: 12px;
-  opacity: 0.6;
-  margin-top: 30px;
-  text-decoration: none;
+.name {
+  color: white;
+  font-size: 1.5rem;
+  align-items: center;
+  align-content: center;
 }

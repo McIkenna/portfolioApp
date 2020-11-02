@@ -49,3 +49,4 @@ export const deleteInfo = id => async dispatch => {
     }
     
 }
+
