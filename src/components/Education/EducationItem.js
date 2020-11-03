@@ -5,6 +5,7 @@ class EducationItem extends Component {
     render() {
 
        const {education} = this.props;
+       const image = `data:image/png;base64,${education.image}`
   return (
 
   <div className={styles.wrapper}>
@@ -12,7 +13,7 @@ class EducationItem extends Component {
     <div className={styles.card_item}>
       <div className={styles.card_inner}>
         <div className={styles.card_top}>
-          <img src="https://i.imgur.com/qhE9KtV.jpg" alt="car" />
+          <img src={image} alt="car" />
         </div>
           <div className={styles.card_bottom}>
           <div className={styles.card_category}>
@@ -24,11 +25,8 @@ class EducationItem extends Component {
               {education.honor}
             </p>
           </div>
-          <div className={styles.card_creator}>
-            {education.concentration}
-          </div>
         </div>
-      </div>
+        </div>
     </div>
 </div>
 </div>

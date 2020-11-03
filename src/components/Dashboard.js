@@ -49,18 +49,16 @@ class Dashboard extends Component {
         <InfoItem key={info.id} info = {info}/>
       ))}
     </div>
-    <div className={styles.education}>
-  {educations.map(education => (  <EducationItem key={education.id} education = {education}/>))}
-  </div>
  
-  <div className={styles.education}>
+    <div className={styles.work}>
   {works.map(work => (  <WorkItem key={work.id} work = {work}/>))}
   </div>
-  <div >
-    {projects.map(project => (<ProjectItem key={project.id} project = {project} />))}
-  </div>
-  <div>
+  <div className={styles.task}>
     {tasks.map(task => <TaskItem key = {task.id} task ={task} /> )}
+  </div>
+
+  <div className={styles.education}>
+  {educations.map(education => (  <EducationItem key={education.id} education = {education}/>))}
   </div>
   <div className={styles.skill}>
     {skills.map(skill => (

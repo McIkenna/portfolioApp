@@ -27,7 +27,7 @@ class AddImage extends Component {
   onAddSubmit(e){
     e.preventDefault();
     const imgPrev = this.state.imagePreviewUrl.split(',')[1];
-    var raw = window.btoa(decodeURIComponent(imgPrev));
+    var raw = window.atob(decodeURIComponent(imgPrev));
     var rawLength = raw.length
     var array = new Uint8Array(new ArrayBuffer(rawLength));
     for(var i=0; i<rawLength; i++){
@@ -46,19 +46,30 @@ class AddImage extends Component {
   }
   
   _handleImageChange(e){
+    e.preventDefault();
+    let file = e.target.files;
     let reader = new FileReader();
-    let file = e.target.files[0];
+    reader.readAsDataURL(file[0]);
+  
     reader.onloadend = () => {
       this.setState({
         file: file,
         imagePreviewUrl: reader.result
       })
     }
+    reader.readAsDataURL(file)
   }
 
 
     render() {
-      let image = 'data:image/jpeg;base64,  '+this.state.image;
+
+      let {imagePreviewUrl} = this.state;
+      let $imagePreview = null;
+      if (imagePreviewUrl) {
+        $imagePreview = (<img src={imagePreviewUrl} />);
+      } else {
+        $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+      }
         return (
             <div>
             <div className={styles.info}>
@@ -67,9 +78,9 @@ class AddImage extends Component {
                   <div className={styles.col}>
                     <h4>Create Project Undertaken</h4>
                     <hr />
-                    <img src={image} alt="car" />
-                    <form onSubmit={this.onAddSubmit.bind(this)}>
                     
+                    <form onSubmit={this.onAddSubmit.bind(this)}>
+                    <img  width="200" height="200" src={$imagePreview} alt="car" />
                     <div className={styles.row}>
                         <input
                           type="file"
@@ -83,7 +94,7 @@ class AddImage extends Component {
                   
                       </div>
                       <div>
-                          <button type="submit" value="save">Upload</button>
+                  <button type="submit" value="save" onClick= {this.onAddSubmit.bind(this)}>Upload</button>
                       </div>
                     </form>
                   </div>

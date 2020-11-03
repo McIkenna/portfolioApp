@@ -37,13 +37,30 @@
 }
 
 .education {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 50%;
+  background-color: #493b88;
 }
 
 .skill {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   padding: 0 10%;
-  background-color: #2f3742;
+  background-color: #393e46;
   border-top: 0.3125rem solid #1c2127;
+}
+
+.work {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 10%;
+  background-color: #494b52;
+}
+
+.task {
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  display: block;
 }

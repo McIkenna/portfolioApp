@@ -7,24 +7,42 @@ class TaskItem extends Component {
     render() {
         const {task} = this.props;
         const data = `data:image/jpeg;base64,${task.data}`
+        
+        const sectionStyle = {
+            width: "400px",
+            height: "400px",
+       
+            backgroundImage: `url(${data})`
+        }
+        
         return (
-            <div>
-            <div className={classes.coursecontainer}>
-            <div className={classes.courses}>
-                <div className={classes.course_item}>
-                <div className={classes.coursePreview}>
-                <div className={classes.course_image}><img src= {data} alt="car"/>
+
+    <div className={classes.container}>
+        <div className={classes.content}>
+            <div className={classes.card}>
+            <div className={classes.leftSide} style={sectionStyle}>
+
+        <h3 className={classes.label}>{task.projectTitle}</h3>
+        </div>
+            <div className={classes.rightSide}>
+              <div className={classes.title}>
+                <h5>{task.keyRole}</h5>
+                <h3>{task.projectSummary}</h3>
+              </div>
+              
+              <div className={classes.box}>
+        
+                <div className={classes.progBar}>
+                  <div className={classes.bar}></div>
                 </div>
-                </div>
-                <div className={classes.courseInfo}>
-                <h2>{task.projectTitle}</h2>
-                <h6>{task.keyRole}</h6>
-            <h3>{task.projectSummary}</h3>
-            </div>
-        </div>
-        </div>
-        </div>
-        </div>
+                <small>{task.progress}</small>
+                
+                <div className={classes.btn}>View</div>
+              </div>
+            </div>          
+          </div>
+    </div>
+    </div>
         )
     }
 }
