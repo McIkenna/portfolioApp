@@ -27,14 +27,14 @@ class AddImage extends Component {
   onAddSubmit(e){
     e.preventDefault();
     const imgPrev = this.state.imagePreviewUrl.split(',')[1];
-    var raw = window.atob(decodeURIComponent(imgPrev));
-    var rawLength = raw.length
-    var array = new Uint8Array(new ArrayBuffer(rawLength));
-    for(var i=0; i<rawLength; i++){
+    let raw = window.atob(decodeURIComponent(imgPrev));
+    let rawLength = raw.length
+    let array = new Uint8Array(new ArrayBuffer(rawLength));
+    for(let i=0; i<rawLength; i++){
       array[i] = raw.charCodeAt(i);
     }
-    var imge = [];
-    for(var i =0; i<rawLength; i++){
+    let imge = [];
+    for(let i =0; i<rawLength; i++){
       imge.push((array[i]));
     }
 

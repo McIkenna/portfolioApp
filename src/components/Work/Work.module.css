@@ -106,20 +106,18 @@ input[type="submit"]:hover {
 
 .main {
   font-family: "Quicksand", serif;
-
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0;
   height: 100%;
 
-  padding: 20% 0;
+  padding: 10% 0;
   color: whitesmoke;
 }
 
 .cards {
-  list-style: none;
+  margin: 0 10px;
 }
-
 h2 {
   font-size: 2rem;
   font-weight: bold;
@@ -133,21 +131,20 @@ h3 {
 .image {
   border-radius: 50%;
   background-color: white;
-  height: 200px;
-  width: 200px;
+  height: 70%;
+  width: 70%;
 }
 .flip {
   position: relative;
 }
 .flip > .front,
 .flip > .back {
-  display: block;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition-duration: 0.5s;
   transition-property: transform, opacity;
   border: 2px solid rgba(36, 36, 36, 0.3);
   border-radius: 20px;
-  box-shadow: 0 20px 50px rgb(0, 0, 0, 0.5);
+  box-shadow: 0 20px 20px rgb(0, 0, 0, 0.5);
 }
 .flip > .front {
   transform: rotateY(0deg);
@@ -180,8 +177,7 @@ h3 {
 
 .flip {
   position: relative;
-  display: inline-block;
-  width: 400px;
+  width: 100%;
 }
 .flip > .front,
 .flip > .back {

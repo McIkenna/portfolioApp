@@ -110,23 +110,25 @@ input[type="submit"]:hover {
   height: 100%;
 }
 .content {
-  margin: 0 10%;
+  margin: 0 5%;
 }
 .card {
   width: 100%;
-  height: 400px;
-  background: #ffffff;
-  box-shadow: 0 2px 5px 2px rgb(0, 0, 0, 0.8);
+  padding: 0 10%;
+  height: 80%;
   border-radius: 15px;
-  overflow: hidden;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 .card .leftSide {
-  width: 400px;
-  height: 400px;
-  background: #2c2760;
-  padding-top: 36px;
+  padding-top: 10%;
   border-radius: 15px;
+}
+
+.leftSide img {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 2px 5px 2px rgb(0, 0, 0, 0.8);
 }
 .card .leftSide label {
   margin-left: 39px;
@@ -154,6 +156,9 @@ input[type="submit"]:hover {
   margin-top: 13px;
   margin-left: 37px;
 }
+
+/*
+//work on this later//
 .card .leftSide .btn {
   margin-top: 60px;
   margin-left: 38px;
@@ -172,23 +177,28 @@ input[type="submit"]:hover {
   margin-right: 10px;
   color: #ada5ff;
 }
-.card .leftSide .btn:hover {
-  margin-left: 43px;
+*/
+.rightSide {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: #ffffff;
+  box-shadow: 0 2px 5px 2px rgb(0, 0, 0, 0.8);
+  padding: 10px;
+  height: 100%;
+  width: 100%;
 }
-.card .rightSide {
-  display: flex;
-}
-.card .rightSide .title h5 {
-  margin-right: 151px;
-  margin-top: 36px;
+
+.rightSide .title h5 {
+  margin-right: 10%;
+  margin-top: 10%;
   font-family: Mulish;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 1rem;
+  line-height: 1em;
   /* identical to box height */
   text-align: center;
-  letter-spacing: 2.1px;
+  letter-spacing: 0.2rem;
   text-transform: uppercase;
   color: #242e4c;
   mix-blend-mode: normal;
@@ -198,25 +208,35 @@ input[type="submit"]:hover {
   font-family: Mulish;
   font-style: normal;
   font-weight: normal;
-  font-size: 32px;
-  line-height: 35px;
-  margin-left: 50px;
-  margin-top: 11px;
+  font-size: 1.5rem;
+  line-height: 2rem;
+
   color: #2c2760;
 }
 .card .rightSide .progBar {
-  width: 218px;
+  width: 100%;
   height: 6px;
-  background: #dddbf1;
+  background: #adadb1;
   border-radius: 3px;
   overflow: hidden;
-  margin-top: 39px;
-  margin-left: 44px;
 }
-.card .rightSide .progBar .bar {
-  width: 140px;
+.card .rightSide .completedBar .bar {
+  width: 100%;
   height: 6px;
-  background: #2c2760;
+  background: #085011;
+  border-radius: 3px;
+}
+.card .rightSide .startedBar .bar {
+  width: 20%;
+  height: 6px;
+  background: #c43801;
+  border-radius: 3px;
+}
+
+.card .rightSide .NoBar .bar {
+  width: 60%;
+  height: 6px;
+  background: #b3df16;
   border-radius: 3px;
 }
 .card .rightSide small {
@@ -235,10 +255,7 @@ input[type="submit"]:hover {
   opacity: 0.7;
 }
 .card .rightSide .btn {
-  width: 161px;
-  height: 47px;
   background: #2c2760;
-  box-shadow: 0px 15px 20px -10px rgba(71, 62, 166, 0.552989);
   border-radius: 28.5px;
   display: flex;
   align-items: center;
@@ -246,15 +263,27 @@ input[type="submit"]:hover {
   font-family: Mulish;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
-  line-height: 25px;
+  font-size: 1rem;
+  line-height: 5%;
   color: #ffffff;
-  margin-left: 98px;
-  margin-top: 115px;
   cursor: pointer;
   transition: 0.3s;
   user-select: none;
+  width: 150px;
+  height: 42px;
+  border-radius: 10px;
+  font-weight: bolder;
+  font-size: 14px;
+  outline: none;
+  padding: 10px;
+  margin: 20px 40px;
 }
 .card .rightSide .btn:active {
   transform: scale(1.01);
+}
+
+@media only screen and (max-width: 1200px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
 }

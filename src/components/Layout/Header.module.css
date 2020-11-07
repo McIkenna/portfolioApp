@@ -1,14 +1,26 @@
 .Header {
-  height: 115px;
+  height: 30%;
   font-family: Arial, Helvetica, sans-serif;
   width: 100%;
+
   background-color: #152d42;
   overflow: hidden;
   padding: 2% 2%;
 }
 
+.logo {
+  align-items: center;
+  margin: 0;
+  width: 60%;
+}
+
+.logo img {
+  width: 100%;
+}
 .maxWidth {
-  display: flex;
+  width: 100%;
+  padding: 0 40%;
+  display: block;
   align-items: center;
   justify-content: space-between;
 }
@@ -19,7 +31,7 @@
   font-weight: 600;
   font-size: 30px;
   margin: 4px 2px;
-  cursor: pointer;
+
   text-decoration: none;
 }
 
@@ -28,12 +40,18 @@
   font-weight: 700;
 }
 .navItem {
-  display: inline-block;
+  display: none;
 }
 
 .navItem li {
   list-style: none;
   display: inline-block;
+}
+
+@media only screen and (max-width: 600) {
+  .navItem {
+    visibility: hidden;
+  }
 }
 /*
 #testFooter {

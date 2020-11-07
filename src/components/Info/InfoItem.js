@@ -5,6 +5,9 @@ import PropTypes from "prop-types"
 import {connect} from "react-redux"
 import {deleteInfo} from "../../actions/InfoActions"
 import {Spring} from "react-spring/renderprops"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import resume from "../images/Ifekaonwu_Ikenna_resume.pdf"
 
 
  class InfoItem extends Component {
@@ -16,6 +19,7 @@ import {Spring} from "react-spring/renderprops"
 
     render() {
         const {info} = this.props;
+        AOS.init({duration: 2000});
         return (
             <Spring
             from={{opacity: 0}}
@@ -30,7 +34,7 @@ import {Spring} from "react-spring/renderprops"
                         <Spring
                         from = {{opacity: 0, marginLeft: -200}}
                         to = {{opacity: 1, marginLeft: 0}}
-                        config={{delay: 1000, duration: 1000}}
+                        config={{delay: 1000, duration: 1500}}
                         >
                    {props => (
                        <div style={props}>
@@ -39,20 +43,34 @@ import {Spring} from "react-spring/renderprops"
                     <p>{info.firstName}</p>
                     <p>{info.lastName}</p>
                     <p>{info.occupation}</p>
+                    </div>
+                    )}
+                    </Spring>
+                    <Spring
+                        from = {{opacity: 0, marginTop: -50}}
+                        to = {{opacity: 1, marginTop: 0}}
+                        config={{delay: 2000, duration: 1000}}
+                        
+                        >
+                   {props => (
+                       <div style={props}>
             <div className={classes.btn} >   
            <Link to="/contactForm" className={classes.hirebtn}>
                 Contact Me
            </Link>
-                    <button className={classes.downcv}>Download CV</button>
+                    <a href={resume} download="Ikenna I.pdf"><button className={classes.downcv}>Download CV</button></a>
                     </div>
-                       </div>
-                   )}
+                    
+                    </div>
+                    )}
                     </Spring>
                     </div>   
             </div>
+          
             <div className={classes.aboutcontainer}>
-                <div className={classes.abouttext}>
+                <div className={classes.abouttext} data-aos="fade-up">
                 <p>{info.summary}</p>
+                
                 
                 <div className={classes.infobutton}>
                 <Link to={`/updateInfo/${info.phone}`}>

@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
 * {
   box-sizing: border-box;
 }
+
 .body {
   margin: 0;
   padding: 0;
@@ -21,41 +23,69 @@
   height: 100%;
 }
 
-@media only screen and (max-width: 800px) {
-  /* For tablets: */
-  .main {
-    width: 80%;
-    padding: 0;
-  }
-}
-@media only screen and (max-width: 500px) {
-  /* For mobile phones: */
-  .menu,
-  .main {
-    width: 100%;
-  }
+.education_cover {
+  background-color: #181135;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
 }
 
+.education_cover h4 {
+  color: whitesmoke;
+  font-size: 3rem;
+  padding-top: 1%;
+  font-family: "Courgette", cursive;
+}
 .education {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 50%;
-  background-color: #493b88;
+
+  border-top: 0.3125rem solid whitesmoke;
+}
+
+.skill_cover {
+  background-color: #393e46;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.skill_cover h4 {
+  color: whitesmoke;
+  font-size: 3rem;
+  padding-top: 1%;
+  font-family: "Courgette", cursive;
 }
 
 .skill {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   padding: 0 10%;
-  background-color: #393e46;
+
   border-top: 0.3125rem solid #1c2127;
 }
 
-.work {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 0 10%;
+.work_cover {
   background-color: #494b52;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.work_cover h4 {
+  font-size: 3rem;
+  padding-top: 1%;
+  font-family: "Courgette", cursive;
+  color: white;
+}
+
+.work {
+  padding: 0 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  border-top: 0.3125rem solid white;
 }
 
 .task {
@@ -63,4 +93,50 @@
   justify-content: center;
   height: 100%;
   display: block;
+  border-top: 0.3125rem solid rgb(27, 27, 27);
+}
+.task_cover {
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+.task_cover h4 {
+  font-size: 3rem;
+  padding-top: 2%;
+  font-family: "Courgette", cursive;
+  color: rgb(27, 27, 27);
+}
+@media only screen and (max-width: 1200px) {
+  /* For tablets: */
+  .main {
+    padding: 0;
+  }
+  .info {
+    padding: 0;
+    margin: 0;
+  }
+
+  .work {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .skill {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 10%;
+    background-color: #393e46;
+    border-top: 0.3125rem solid #1c2127;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .work {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .education {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 50%;
+  }
 }

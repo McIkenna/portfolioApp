@@ -8,16 +8,15 @@ import CreateProjectButton from '../Project/CreateProjectButton';
 import CreateSkillButton from '../Skill/CreateSkillButton';
 import CreateProfileImage from '../ProfileImage/CreateProfileImage';
 import CreateTaskButton from '../projectTask/CreateTaskButton';
-
+import logo from "../images/Ikenna2.png"
 
 class Header extends Component {
     render() {
         return (
         <div className={styles.Header}>
             <div className={styles.maxWidth}> 
-            <Link to="/Dashboard" className={styles.button}>
-                Home
-                </Link>
+    
+         
                 <div className={styles.navItem}>
                 <li><CreateInfo/></li>
                 <li><CreateEduButton /></li>
@@ -27,7 +26,11 @@ class Header extends Component {
                 <li><CreateProfileImage /></li>
                 <li><CreateTaskButton /></li>
                 </div>
+
+                <Link to="/Dashboard"><img src={logo} alt="IKENNA" className={styles.logo}/>
+                </Link>   
                 </div>
+                
         </div>
         )
     }

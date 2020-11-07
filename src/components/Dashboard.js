@@ -14,8 +14,7 @@ import {getProjects} from "../actions/ProjectActions"
 import {getSkills} from "../actions/SkillAction"
 import {getStoredTasks} from "../actions/ProjectActions"
 import SkillItem from './Skill/SkillItem';
-import "aos/dist/aos.css";
-import Aos from "aos";
+
 import TaskItem from './projectTask/TaskItem';
 
 
@@ -40,6 +39,7 @@ class Dashboard extends Component {
       const {tasks} = this.props.task
   
 
+
   return (
 <div className={styles.body}>
 <div className = {styles.dashbody}>
@@ -49,21 +49,35 @@ class Dashboard extends Component {
         <InfoItem key={info.id} info = {info}/>
       ))}
     </div>
- 
-    <div className={styles.work}>
+    <div className={styles.work_cover}><h4>Work Experience</h4>
+    <div className={styles.work} > 
   {works.map(work => (  <WorkItem key={work.id} work = {work}/>))}
   </div>
+  </div>
+
+  <div>
+  <div className={styles.task_cover}><h4>Project Undertaken</h4>
   <div className={styles.task}>
     {tasks.map(task => <TaskItem key = {task.id} task ={task} /> )}
   </div>
+  </div>
+  </div>
 
+  <div>
+  <div className={styles.education_cover}><h4>Education</h4>
   <div className={styles.education}>
   {educations.map(education => (  <EducationItem key={education.id} education = {education}/>))}
   </div>
+  </div>
+  </div>
+  <div>
+  <div className={styles.skill_cover}><h4>Skill</h4>
   <div className={styles.skill}>
     {skills.map(skill => (
 
       <SkillItem key={skill.id} skill = {skill} /> ))}
+  </div>
+  </div>
   </div>
   </div>
 </div>

@@ -36,7 +36,7 @@ class AddTask extends Component {
   imageData.append("startdate", this.state.startDate);
   imageData.append("endDate", this.state.endDate);
 
-  var headers = {
+  let headers = {
     'Content-Type': 'application/json',
     "Access-Control-Allow-Origin": "*"
   }

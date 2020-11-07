@@ -20,13 +20,27 @@ import contactForm from './components/Contact/contactForm';
 import AddTask from './components/projectTask/AddTask';
 import AddImage from './components/ProfileImage/AddImage';
 
+
 function App() {
+
+  const centeredStyles = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    height: "100%",
+  };
+  const h2Styles = {
+    fontSize: "82px",
+  };
+  
   return (
     <Provider store={store}>
        
     <Router>
     <div className={styles.body}>
       <Header/>
+     
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/addInfo" component={AddInfo} />
       <Route exact path="/updateInfo/:id" component={UpdateInfo} />
@@ -39,12 +53,14 @@ function App() {
       <Route exact path="/addImg" component={AddImage} />
       <Route exact path="/contactForm" component={contactForm} />
       <Route exact path="/addTask" component={AddTask} />
+  
       <Footer />
       </div>
     
     </Router>
  
     </Provider>
+
   );
 }
 

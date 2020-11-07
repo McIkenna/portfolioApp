@@ -7,7 +7,7 @@ const middleware = [thunk]
 
 let store
 
-if(window.navigator.userAgent.includes("Chrome")){
+if(window.navigator.userAgent.includes("Chrome", "firefox")){
     store = createStore(rootReducer, initialState, 
         compose(applyMiddleware (...middleware), 
         window.__REDUX_DEVTOOLS_EXTENSION__ && 
