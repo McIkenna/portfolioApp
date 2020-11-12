@@ -27,7 +27,7 @@ class Header extends Component {
                 <li><CreateTaskButton /></li>
                 </div>
 
-                <Link to="/Dashboard"><img src={logo} alt="IKENNA" className={styles.logo}/>
+                <Link to="/"><img src={logo} alt="IKENNA" className={styles.logo}/>
                 </Link>   
                 </div>
                 

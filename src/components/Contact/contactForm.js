@@ -27,9 +27,7 @@ class contactForm extends Component {
         let nameError = "";
         let emailError = "";
 
-        if(this.state.email.includes('@')){
-            emailError = "invalid email address"
-        }
+        
         if(!this.state.name){
             nameError = "name cannot be empty"
         }
@@ -42,8 +40,8 @@ class contactForm extends Component {
                 return false
             }
         }
-        if(emailError || nameError){
-            this.setState({emailError, nameError});
+        if(nameError){
+            this.setState({nameError});
             return false
         }
         return true;
@@ -76,15 +74,15 @@ class contactForm extends Component {
     render() {
         const {feedback} = this.state;
         return (
-            <div>
+           
             <div className={styles.info}>
               <div className={styles.container}>
-                <div className={styles.cover}>
+                  <div className={styles.col}>
                   <div className={styles.col}>
                     <p className={styles.feedback}>{feedback}</p>
                     <h4> Contact Me</h4>
                     <hr />
-                    <form onSubmit={this.onSubmit} >
+                    <form onSubmit={this.onSubmit} className={styles.inner}>
                       <div className={styles.row}>
                         <input
                           type="text"
@@ -121,13 +119,14 @@ class contactForm extends Component {
                       <input
                         type="submit"
                         className={styles.button}
+                        
                       />
                     </form>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+              </div>
+         
         )
     }
 }

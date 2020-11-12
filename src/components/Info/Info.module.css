@@ -8,6 +8,7 @@
 .info {
   border-radius: 5px;
   width: 100%;
+  background-color: #f2f2f2;
 }
 
 .profileImage {
@@ -135,7 +136,7 @@ input[type="submit"]:hover {
   font-size: 5rem;
 }
 .textcontainer p:nth-child(2) {
-  font-family: calibri;
+  font-family: cursive;
   font-weight: bold;
   letter-spacing: 1px;
 
@@ -144,18 +145,18 @@ input[type="submit"]:hover {
   line-height: 1em;
 }
 .textcontainer p:nth-child(3) {
-  font-family: myriad pro regular;
-  color: #02251b;
+  font-family: serif;
+  color: #000000;
 
   font-size: 7rem;
   line-height: 15px;
   text-indent: 10rem;
 }
 .textcontainer p:nth-child(4) {
-  font-family: myriad pro regular;
-  color: #02251b;
+  font-family: cursive;
+  color: #000000;
   font-size: 45px;
-  line-height: 10px;
+  line-height: 19px;
   text-indent: 17rem;
 }
 
@@ -167,6 +168,7 @@ input[type="submit"]:hover {
   border-radius: 20px;
   font-size: 4rem;
   line-height: 1em;
+  text-align: center;
 }
 .textcontainer p {
   margin: 45px 0px 25px;
@@ -182,21 +184,11 @@ input[type="submit"]:hover {
   outline: none;
   margin: 0px 40px;
 }
-
 .btn {
+  display: flex;
 }
+
 .hirebtn {
-  width: 150px;
-  height: 42px;
-  border-radius: 10px;
-  font-family: calibri;
-  font-weight: bolder;
-  font-size: 14px;
-  outline: none;
-  padding: 10px;
-  margin: 0px 40px;
-  border: 2px solid #373636;
-  color: #373636;
   background-color: transparent;
   cursor: pointer;
   text-decoration: none;
@@ -240,8 +232,36 @@ input[type="submit"]:hover {
   font-family: Mulish;
   line-height: 1.5em;
   font-size: 2rem;
+  justify-content: center;
 }
-
+.socials {
+  padding: 2% 5%;
+  width: 20%;
+  height: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30%;
+  align-items: center;
+}
+.linkedin {
+  width: 30px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: green;
+}
+.github {
+  width: 30px;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+.linkedin:hover {
+  box-shadow: 0 2px 10px rgb(17, 17, 17);
+}
+.github:hover {
+  box-shadow: 0 2px 10px rgb(17, 17, 17);
+}
 .abouttext p:nth-child(2) {
   font-size: 25px;
   font-family: Mulish;
@@ -268,15 +288,11 @@ input[type="submit"]:hover {
     line-height: 1em;
   }
   .textcontainer p:nth-child(3) {
-    font-family: myriad pro regular;
-    color: #02251b;
     font-size: 7rem;
     line-height: 15px;
     text-indent: 10rem;
   }
   .textcontainer p:nth-child(4) {
-    font-family: myriad pro regular;
-    color: #02251b;
     font-size: 45px;
     line-height: 10px;
     text-indent: 17rem;
@@ -286,9 +302,9 @@ input[type="submit"]:hover {
     font-family: myriad pro regular;
     color: #ffffff;
     background-color: #090530;
-    padding: 10px;
+    padding: 0 5%;
     border-radius: 20px;
-    font-size: 2rem;
+    font-size: 2.5rem;
     line-height: 1em;
   }
   .textcontainer p {
@@ -315,37 +331,31 @@ input[type="submit"]:hover {
   }
 
   .Infocover {
-    background-image: none;
+    background-image: url("../images/whiteBack2.png");
     width: 100%;
   }
   .textcontainer p:nth-child(2) {
-    font-size: 1.5em;
+    font-family: cursive;
+    font-size: 1rem;
     text-indent: 1rem;
     line-height: 0.5em;
   }
   .textcontainer p:nth-child(3) {
-    font-family: myriad pro regular;
-    color: #02251b;
-    font-size: 4rem;
+    color: rgb(0, 0, 0);
+
+    font-size: 3rem;
     line-height: 15px;
     text-indent: 3rem;
   }
   .textcontainer p:nth-child(4) {
-    font-family: myriad pro regular;
-    color: #02251b;
-    font-size: 45px;
+    color: rgb(0, 0, 0);
+    font-size: 2rem;
     line-height: 6px;
     text-indent: 4rem;
   }
 
   .textcontainer p:nth-child(5) {
-    font-family: myriad pro regular;
-    color: #ffffff;
-    background-color: #090530;
-    padding: 10px;
-    border-radius: 20px;
-    font-size: 2rem;
-    line-height: 1em;
+    font-size: 1.8rem;
   }
   .textcontainer p {
     margin: 30px 0px 15px;
@@ -360,8 +370,17 @@ input[type="submit"]:hover {
     width: 100%;
     background-color: #152d42;
     background-image: none;
+    padding: 10% 10%;
+    height: 40vh;
   }
   .abouttext p:nth-child(1) {
     font-size: 1.2rem;
+  }
+  .btn {
+    display: block;
+    margin: 20px;
+  }
+  .contact {
+    padding: 10px 0;
   }
 }

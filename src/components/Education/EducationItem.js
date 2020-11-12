@@ -10,7 +10,6 @@ class EducationItem extends Component {
        const image = `data:image/png;base64,${education.image}`
        AOS.init({duration: 2000});
   return (
-
   <div className={styles.wrapper}>
   <div className={styles.cards_wrap}>
     <div className={styles.card_item}>
@@ -37,4 +36,4 @@ class EducationItem extends Component {
     }
 }
 
-export default (EducationItem)
+export default EducationItem

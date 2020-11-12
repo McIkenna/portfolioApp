@@ -8,7 +8,8 @@ import {Spring} from "react-spring/renderprops"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import resume from "../images/Ifekaonwu_Ikenna_resume.pdf"
-
+import github from "../images/github.png"
+import linkedin from "../images/linkedin.png"
 
  class InfoItem extends Component {
 
@@ -54,12 +55,22 @@ import resume from "../images/Ifekaonwu_Ikenna_resume.pdf"
                         >
                    {props => (
                        <div style={props}>
-            <div className={classes.btn} >   
-           <Link to="/contactForm" className={classes.hirebtn}>
-                Contact Me
-           </Link>
-                    <a href={resume} download="Ikenna I.pdf"><button className={classes.downcv}>Download CV</button></a>
-                    </div>
+            <div className={classes.btn} > 
+           <div className={classes.contact}><Link to="/contactForm" >
+           <button className={classes.hirebtn}>Contact Me</button>
+           </Link>    </div>
+            <div><a href={resume} download="Ikenna I.pdf"><button className={classes.downcv}>Download CV</button></a>
+            </div>
+            </div>
+            <div className={classes.socials}>
+              
+            <a href="https://github.com/McIkenna" target="_blank">
+                <img src={github} alt="github" className={classes.github}/>
+           </a>
+           < a href="https://www.linkedin.com/in/ikenna-ifekaonwu/" target="_blank"  >
+                <img src={linkedin} alt="linkedIn" className={classes.linkedin}/>
+           </a>
+            </div>
                     
                     </div>
                     )}

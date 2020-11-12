@@ -48,9 +48,16 @@
   display: inline-block;
 }
 
-@media only screen and (max-width: 600) {
+@media screen and (max-width: 600px) {
+  .Header {
+    height: 40%;
+  }
   .navItem {
     visibility: hidden;
+  }
+
+  .logo {
+    width: 80%;
   }
 }
 /*

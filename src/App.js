@@ -19,6 +19,7 @@ import Footer from './components/Layout/Footer';
 import contactForm from './components/Contact/contactForm';
 import AddTask from './components/projectTask/AddTask';
 import AddImage from './components/ProfileImage/AddImage';
+import spinner from './components/Spinner/Spinner';
 
 
 function App() {
@@ -33,15 +34,15 @@ function App() {
   const h2Styles = {
     fontSize: "82px",
   };
-  
+ 
+
   return (
     <Provider store={store}>
-       
     <Router>
-    <div className={styles.body}>
+   
       <Header/>
-     
-      <Route exact path="/dashboard" component={Dashboard} />
+      <div className={styles.body}>
+      <Route exact path="/" component={Dashboard} />
       <Route exact path="/addInfo" component={AddInfo} />
       <Route exact path="/updateInfo/:id" component={UpdateInfo} />
       <Route exact path="/addEducation" component={AddEducation } />
@@ -53,12 +54,9 @@ function App() {
       <Route exact path="/addImg" component={AddImage} />
       <Route exact path="/contactForm" component={contactForm} />
       <Route exact path="/addTask" component={AddTask} />
-  
-      <Footer />
       </div>
-    
+      <Footer />
     </Router>
- 
     </Provider>
 
   );

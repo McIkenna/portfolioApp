@@ -201,3 +201,43 @@ h3 {
 .front_text {
   background-color: rgba(36, 36, 36, 0.3);
 }
+
+@media screen and (max-width: 600px) {
+  .flip > .front p,
+  .flip > .back p {
+    font-size: 0.9rem;
+    line-height: 160%;
+    color: #999;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: whitesmoke;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    color: rgb(184, 181, 181);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .flip > .front p,
+  .flip > .back p {
+    font-size: 0.7rem;
+    line-height: 160%;
+    color: #999;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: whitesmoke;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+    color: rgb(184, 181, 181);
+  }
+}

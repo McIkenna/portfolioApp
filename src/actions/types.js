@@ -1,6 +1,6 @@
 export const GET_ERRORS = "GET_ERRORS";
 export const GET_INFO   = "GET_INFO";
-export const GET_STOREDINFO   = "GET_STOREDINFO";
+export const GET_STOREDINFO = "GET_STOREDINFO";
 export const DELETE_INFO = "DELETE_INFO";
 
 
@@ -28,3 +28,4 @@ export const DELETE_SKILL = "DELETE_SKILL";
 
 //Image
 export const UPLOAD_PROFILEIMG = "UPLOAD_PROFILEIMG";
+

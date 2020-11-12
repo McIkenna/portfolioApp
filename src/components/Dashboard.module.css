@@ -48,7 +48,7 @@
   background-color: #393e46;
   align-items: center;
   text-align: center;
-  overflow: hidden;
+  display: none;
 }
 
 .skill_cover h4 {
@@ -138,5 +138,9 @@
     display: grid;
     grid-template-columns: 1fr;
     height: 50%;
+  }
+
+  .main h4 {
+    font-size: 2rem;
   }
 }
