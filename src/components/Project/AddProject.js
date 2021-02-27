@@ -9,14 +9,19 @@ class AddProject extends Component {
     constructor(){
         super()
         this.state = {
-            projectIdentifier: "",
+            projectId: "",
             projectTitle: "",
             keyRole: "",
             projectSummary: "",
+            projectImage:"",
+            projectLink:"",
             progress: "",
-            progressrate: 0,
-            startDate: null,
-            endDate: null,
+            progressRate: null,
+            startDate: "",
+            endDate: "",
+            file: null,
+            fileName:"",
+            image_preview: "",
             errors: {}
         }
         this.onChange = this.onChange.bind(this)
@@ -24,29 +29,54 @@ class AddProject extends Component {
     }
 
 
-    UNSAFE_componentWillReceiveProps(nextProps){
-        if(nextProps.errors){
-            this.setState({errors: nextProps.errors})
-        }
+    static getDerivedStateFromProps(nextProps, prevState){
+      if(nextProps.errors){
+          return {errors: nextProps.errors};
+      }
+      else return null;
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevProps.error){
+        this.setState({errors: prevProps.errors});
+        
     }
+  
+  }
 
     onChange(e){
+      e.preventDefault();
         this.setState({[e.target.name]: e.target.value})
+    }
+
+
+    handlePreview =(e)=> {
+      let image_as_base64 = URL.createObjectURL(e.target.files[0])
+      this.setState({
+        image_preview: image_as_base64,
+        file : e.target.files[0],
+        fileName : e.target.files[0].name
+
+    })
     }
 
     onSubmit(e){
         e.preventDefault();
-        const newProject = {
-            projectIdentifier: this.state.projectIdentifier,
-            projectTitle: this.state.projectTitle,
-            keyRole: this.state.keyRole,
-            projectSummary: this.state.projectSummary,
-            progress: this.state.progress,
-            progressrate: this.state.progressrate,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
-        }
-        this.props.createProject(newProject, this.props.history)
+        let formData = new FormData();
+       
+        formData.append('file', this.state.file);
+        formData.append('projectTitle', this.state.projectTitle);
+        formData.append('keyRole', this.state.keyRole);
+        formData.append('projectSummary', this.state.projectSummary);
+        formData.append('progress', this.state.progress);
+        formData.append('projectLink', this.state.projectLink);
+        formData.append('progressRate', this.state.progressRate);
+        formData.append('fileName', this.state.fileName);
+        formData.append('projectImage', this.state.projectImage);
+        formData.append('startDate', this.state.startDate);
+        formData.append('endDate', this.state.endDate);
+   
+        this.props.createProject(formData, this.props.history)
     }
     render() {
         const {errors} = this.state
@@ -60,15 +90,17 @@ class AddProject extends Component {
                     <hr />
                     <form onSubmit={this.onSubmit}>
                     <div className={styles.row}>
-                        <input
-                          type="text"
-                          className={errors.projectIdentifier ? styles.invalid : styles.input}
-                          placeholder="Project Identifier"
-                          name="projectIdentifier"
-                          value = {this.state.projectIdentifier}
-                          onChange={this.onChange}
-                         
-                        />
+                    <div className={styles.row}>
+                    <img src={this.state.image_preview} alt="..." />
+                      <input 
+                      type="file" 
+                    className= "custom-file-input"
+                    name="file"
+                    value = {this.state.projectImage}
+                    onChange={this.handlePreview}/>
+                    <label className="custom-file-label" for="customFile">{this.state.fileName}</label>
+                    
+                      </div>
                          <p className={styles.invalid}>{errors.projectIdentifier}</p>
                       </div>
                       <div className={styles.row}>
@@ -116,18 +148,18 @@ class AddProject extends Component {
                         <select
                           type="text"
                           className={errors.progressrate ? styles.invalid : styles.input}
-                          placeholder="progressrate"
-                          name="progressrate"
-                          value = {this.state.progressrate}
+                          placeholder="progress Rate"
+                          name="progressRate"
+                          value = {this.state.progressRate}
                           onChange={this.onChange}
                         >
                         <option value={0}>0</option>
-                        <option value={1}>25</option>
-                        <option value={2}>50</option>
-                        <option value={3}>75</option>
-                        <option value={4}>100</option>
+                        <option value={25}>25</option>
+                        <option value={50}>50</option>
+                        <option value={75}>75</option>
+                        <option value={100}>100</option>
                         </select>
-                        <p className={styles.invalid}>{errors.progressrate}</p>
+                        <p className={styles.invalid}>{errors.progressRate}</p>
 
                       </div>
                       <div className={styles.row}>
@@ -162,6 +194,18 @@ class AddProject extends Component {
                           value = {this.state.endDate}
                           onChange={this.onChange}
                         />
+                      </div>
+                      <div className={styles.row}>
+                        <input
+                          type="text"
+                          className={errors.projectLink ? styles.invalid : styles.input}
+                          placeholder="Project Link"
+                          name="projectLink"
+                          value = {this.state.projectLink}
+                          onChange={this.onChange}
+                         
+                        />
+                         <p className={styles.invalid}>{errors.projectLink}</p>
                       </div>
                       <input
                         type="submit"

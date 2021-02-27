@@ -8,35 +8,65 @@ import {createSkill} from "../../actions/SkillAction"
      constructor(){
          super()
          this.state = {
-             skillname: "",
-             subname: "",
+           skillId:"",
+             skillName: "",
+             subName: "",
              proficiency: "",
+
              rating: "",
-             errors:{}
+             skillImageUrl:"",
+             file: null,
+            fileName:"",
+            image_preview: "",
+            errors: {}
          }
          this.onChange = this.onChange.bind(this)
          this.onSubmit = this.onSubmit.bind(this)
      }
 
-     UNSAFE_componentWillReceiveProps(nextProps){
-         if(nextProps.errors){
-             this.setState({errors: nextProps.errors})
-         }
-     }
+     static getDerivedStateFromProps(nextProps, prevState){
+      if(nextProps.errors){
+          return {errors: nextProps.errors};
+      }
+      else return null;
+  }
 
+  componentDidUpdate(prevProps, prevState){
+    if(prevProps.error){
+        this.setState({errors: prevProps.errors});
+        
+    }
+  }
      onChange(e){
          this.setState({[e.target.name]: e.target.value})
      }
 
+     handlePreview =(e)=> {
+      let image_as_base64 = URL.createObjectURL(e.target.files[0])
+      this.setState({
+        image_preview: image_as_base64,
+        file : e.target.files[0],
+        fileName : e.target.files[0].name
+
+    })
+    }
+
+
      onSubmit(e){
          e.preventDefault();
-         const newSkill = {
-            skillname: this.state.skillname,
-            subname: this.state.subname,
-            proficiency: this.state.proficiency,
-            rating: this.state.rating
-         }
-         this.props.createSkill(newSkill, this.props.history)
+        
+
+         let formData = new FormData();
+         formData.append('file', this.state.file);
+         formData.append('skillName', this.state.skillName);
+         formData.append('subName', this.state.subName);
+         formData.append('proficiency', this.state.proficiency);
+         formData.append('rating', this.state.rating);
+         formData.append('skillImageUrl', this.state.skillImageUrl);
+         formData.append('fileName', this.state.fileName);
+        
+
+         this.props.createSkill(formData, this.props.history)
      }
     render() {
         const {errors} = this.state
@@ -49,13 +79,26 @@ import {createSkill} from "../../actions/SkillAction"
                     <h4>Create Skills</h4>
                     <hr />
                     <form onSubmit={this.onSubmit}>
+                    <div className={styles.row}>
+                 
+                    <img src={this.state.image_preview} alt="..." />
+                      <input 
+                      type="file" 
+                    className= "custom-file-input"
+                    name="file"
+                    value = {this.state.skillImageUrl}
+                    onChange={this.handlePreview}/>
+                    <label className="custom-file-label" for="customFile">{this.state.fileName}</label>
+                    
+                         <p className={styles.invalid}>{errors.fileName}</p>
+                      </div>
                       <div className={styles.row}>
                         <input
                           type="text"
                           className={errors.skillname ? styles.invalid : styles.input}
                           placeholder="Skill Name"
-                          name="skillname"
-                          value = {this.state.skillname}
+                          name="skillName"
+                          value = {this.state.skillName}
                           onChange={this.onChange}
                          
                         />
@@ -67,8 +110,8 @@ import {createSkill} from "../../actions/SkillAction"
                           type="text"
                           className={errors.subname ? styles.invalid : styles.input}
                           placeholder="Sub-Name"
-                          name="subname"
-                          value = {this.state.subname}
+                          name="subName"
+                          value = {this.state.subName}
                           onChange={this.onChange}
                         />
                         <p  className={styles.invalid}>{errors.subname}</p>

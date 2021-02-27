@@ -12,25 +12,42 @@ class ProjectItem extends Component {
     render() {
 		const {project} = this.props;
         return (
-            <div>
-        <div className={classes.coursecontainer}>
-	    <div className={classes.courses}>
-			<div className={classes.course_item}>
-			<div className={classes.coursePreview}>
-			<div className={classes.course_image}><img src="https://picsum.photos/500/300/?image=10" alt="car"/>
-        	</div>
+
+			<div className={classes.container}>
+			<div className={classes.content}>
+				<div className={classes.card}>
+				<div className={classes.leftSide} data-aos="fade-right">
+			<img src={project.projectImage} alt="car"/>
 			</div>
-		    <div className={classes.courseInfo}>
-			<h2>{project.projectTitle}</h2>
-			<h6>{project.keyRole}</h6>
-		<h3>{project.projectSummary}</h3>
-		<Link to={`/updateProject/${project.projectIdentifier}`}><button className={classes.button}>Update</button></Link>
-			<button className={classes.button} onClick={this.onDeleteClick.bind(this, project.projectIdentifier)}>Delete</button>
+				<div className={classes.rightSide} data-aos="fade-left">
+			   
+				  <div className={classes.title}>
+				  <h1 className={classes.label}>{project.projectTitle}</h1>
+					<h5>{project.keyRole}</h5>
+					<h3>{project.projectSummary}</h3>
+				  </div>
+				  <div className={classes.box}>
+					<div
+					className={project.progress == 3 ? classes.completedBar : project.progress == 2 ? classes.inProgressBar : project.progress == 1 ? classes.startedBar: classes.NoBar}
+				   >
+					  <div className={classes.bar}></div>
+					</div>
+				   
+					<small>{project.progressRate}% Completion</small>
+				   <a href={project.projectLink} target="_blank"><button className={classes.btn}>View</button></a>
+				  </div>
+				  
+				</div>
+				
+			  </div>
+			  <Link to={`/updateProject/${project.projectId}`}><button className={classes.button}>Update</button></Link>
+			<button className={classes.button} onClick={this.onDeleteClick.bind(this, project.projectId)}>Delete</button>
+	          
+			  
 		</div>
-	</div>
-	</div>
-    </div>
-            </div>
+		</div>
+           
+		
         )
     }
 }

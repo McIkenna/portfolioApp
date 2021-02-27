@@ -84,10 +84,10 @@ import linkedin from "../images/linkedin.png"
                 
                 
                 <div className={classes.infobutton}>
-                <Link to={`/updateInfo/${info.phone}`}>
+                <Link to={`/updateInfo/${info.infoId}`}>
                 <button className={classes.updatebtn}>Update</button>
                 </Link>
-                <button className={classes.deletebtn} onClick={this.onDeleteClick.bind(this, info.phone)}>Delete</button>
+                <button className={classes.deletebtn} onClick={this.onDeleteClick.bind(this, info.infoId)}>Delete</button>
             
                 </div>
                 </div>

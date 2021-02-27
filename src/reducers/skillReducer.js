@@ -1,4 +1,4 @@
-import { DELETE_SKILL, GET_SKILLS } from "../actions/types";
+import { DELETE_SKILL, GET_SKILLS, GET_SKILL } from "../actions/types";
 
 
 const initialState = {
@@ -12,6 +12,11 @@ export default function(state = initialState, action){
             return{
                 ...state,
                 skills: action.payload
+            };
+        case GET_SKILL:
+            return{
+                ...state,
+                skill: action.payload
             };
         case DELETE_SKILL:
             return{

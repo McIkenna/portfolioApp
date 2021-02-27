@@ -3,8 +3,8 @@ import {GET_ERRORS, GET_INFO, GET_STOREDINFO, DELETE_INFO} from "./types";
 
 export const createInfo = (info, history) => async dispatch => {
     try {
-        const res = await axios.post("http://portfolioawswebsite-env.eba-cj2sjia3.us-east-2.elasticbeanstalk.com/api/info", info)
-        history.push("/dashboard");
+       await axios.post(`http://localhost:8080/api/info`, info)
+        history.push(`/`);
         dispatch({
             type:GET_ERRORS,
             payload: {}
@@ -14,37 +14,38 @@ export const createInfo = (info, history) => async dispatch => {
             type:GET_ERRORS,
             payload: error.response.data
         })
+        console.log(error)
     }
 }
 
 
 export const getInfo = () => async dispatch => {
-  const res = await axios.get(`http://portfolioawswebsite-env.eba-cj2sjia3.us-east-2.elasticbeanstalk.com/api/info/all`)
+  const res = await axios.get(`http://localhost:8080/api/info/all`)
 
         dispatch({
             type: GET_INFO,
-            payload: res.data,
+            payload: res.data
     
      } )   
     
 };
 
-export const getStoredInfo = (id, history) => async dispatch => {
+export const getStoredInfo = (infoId, history) => async dispatch => {
    try {
-    const res = await axios.get(`http://portfolioawswebsite-env.eba-cj2sjia3.us-east-2.elasticbeanstalk.com/api/info/${id}`)
+    const res = await axios.get(`http://localhost:8080/api/info/${infoId}`)
     dispatch({
         type: GET_STOREDINFO,
         payload: res.data,
     })
    } catch (error) {
-       history.push("/dashboard");
+       history.push("/");
    }
 };
 
 export const deleteInfo = id => async dispatch => {
     if(window.confirm("This will delete data Permanent"))
     {
-        await axios.delete(`http://portfolioawswebsite-env.eba-cj2sjia3.us-east-2.elasticbeanstalk.com/api/info/${id}`)
+        await axios.delete(`http://localhost:8080/api/info/${id}`)
     dispatch({
         type: DELETE_INFO,
         payload: id
@@ -53,6 +54,21 @@ export const deleteInfo = id => async dispatch => {
         
 };
 
+export const updatePrevInfo = (info, history) => async dispatch => {
+    try {
+        await axios.put(`http://localhost:8080/api/info`, info)
+        history.push("/");
+        dispatch({
+            type: GET_ERRORS,
+            payload: {}
+        });
+    } catch (error) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: error.response.data
+        })
+    }
+};
 
 
 

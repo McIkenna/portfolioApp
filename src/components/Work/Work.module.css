@@ -96,7 +96,20 @@ input[type="submit"]:hover {
   margin: 4px 2px;
   cursor: pointer;
 }
+.updatebtn {
+  border: 2px solid whitesmoke;
+  color: whitesmoke;
+  background-color: transparent;
+}
+.deletebtn {
+  border: 2px solid whitesmoke;
+  color: whitesmoke;
+  background-color: transparent;
+}
 
+.infobutton {
+  padding-top: 50px;
+}
 /* Design */
 *,
 *::before,
@@ -128,6 +141,11 @@ h3 {
   color: rgb(184, 181, 181);
 }
 
+.jobTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: whitesmoke;
+}
 .image {
   border-radius: 50%;
   background-color: white;
@@ -200,6 +218,11 @@ h3 {
 
 .front_text {
   background-color: rgba(36, 36, 36, 0.3);
+}
+@media screen and (max-width: 900px) {
+  .flip > .back {
+    overflow: scroll;
+  }
 }
 
 @media screen and (max-width: 600px) {

@@ -23,8 +23,6 @@ class Header extends Component {
                 <li><CreateWorkButton /></li>
                 <li><CreateProjectButton /></li>
                 <li><CreateSkillButton /></li>
-                <li><CreateProfileImage /></li>
-                <li><CreateTaskButton /></li>
                 </div>
 
                 <Link to="/"><img src={logo} alt="IKENNA" className={styles.logo}/>

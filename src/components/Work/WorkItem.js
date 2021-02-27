@@ -13,8 +13,7 @@ class WorkItem extends Component {
     }
     render() {
         const {work} = this.props;
-        const image = `data:image/jpeg;base64,${work.image}`
-        AOS.init({duration: 2000});
+        
   
 return (
   
@@ -26,19 +25,26 @@ return (
     <div className={classes.cards_item} data-aos-easing="ease-in-out" data-aos="fade-up">
     <div className={classes.flip}>
     <div className={classes.front} >
-      <div><img src={image}  alt="car"  className={classes.image} /></div>
+    <div><img src={work.workImage}  alt="car"  className={classes.image} /></div>
 
     </div>
 
     <div className={classes.back}>
-    <h2>{work.companyName}</h2>
-    <h3>{work.jobTitle}</h3>
+    <h3>{work.companyName}</h3>
+    <p className={classes.jobTitle}>{work.jobTitle}</p>
     <p>{work.jobDescription}</p>
     </div>
+    <div className={classes.infobutton}>
+    <Link to={`/updateWork/${work.workId}`}>
+    <button className={classes.updatebtn}>Update</button>
+    </Link>
+    <button className={classes.deletebtn} onClick={this.onDeleteClick.bind(this, work.workId)}>Delete</button>
+       </div>
     </div>
     </div>
    
   </div>
+  
       
   </div>
   </div>

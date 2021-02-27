@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
 import styles from "./Edu.module.css"
-import AOS from 'aos';
+import {Link} from "react-router-dom"
 import 'aos/dist/aos.css';
+import {connect} from "react-redux"
+import PropTypes from "prop-types"
+import {deleteEdu} from "../../actions/EduActions"
 
 class EducationItem extends Component {
+
+  onDeleteClick = id => {
+		this.props.deleteEdu(id)
+	}
     render() {
 
        const {education} = this.props;
-       const image = `data:image/png;base64,${education.image}`
-       AOS.init({duration: 2000});
+      
   return (
   <div className={styles.wrapper}>
   <div className={styles.cards_wrap}>
     <div className={styles.card_item}>
       <div className={styles.card_inner}  data-aos="fade-down">
         <div className={styles.card_top}>
-          <img src={image} alt="car" />
+          <img src={education.educationImage} alt="car" />
         </div>
           <div className={styles.card_bottom}>
           <div className={styles.card_category}>
@@ -27,7 +33,12 @@ class EducationItem extends Component {
               {education.honor}
             </p>
           </div>
+          <Link to={`/updateEdu/${education.eduId}`}><button className={styles.button}>Update</button></Link>
+			<button className={styles.button} onClick={this.onDeleteClick.bind(this, education.eduId)}>Delete</button>
+	         
         </div>
+  
+			  
         </div>
     </div>
 </div>
@@ -36,4 +47,8 @@ class EducationItem extends Component {
     }
 }
 
-export default EducationItem
+EducationItem.propTypes = {
+  deleteEdu: PropTypes.func.isRequired
+}
+
+export default connect(null, {deleteEdu})(EducationItem)

@@ -7,20 +7,19 @@ import {createInfo} from "../../actions/InfoActions"
 class AddInfo extends Component {
 
     constructor(){
-        super()
+        super();
         this.state={
+            infoId:"",
             firstName: "",
             lastName: "",
             occupation: "",
             phone: "",
             email: "",
             summary: "",
-            created: "",
-            lastUpdated: "",
-            street: "",
-            city: "",
-            state: "",
-            country:"",
+            personalImage:"",
+            file: null,
+            fileName:"",
+            image_preview: "",
             errors: {}
         };
 
@@ -28,38 +27,57 @@ class AddInfo extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    //Life cycle hooks
-    UNSAFE_componentWillReceiveProps(nextProps) {
-      if (nextProps.errors) {
-        this.setState({errors: nextProps.errors})
+
+    static getDerivedStateFromProps(nextProps, prevState){
+      if(nextProps.errors){
+          return {errors: nextProps.errors};
       }
+      else return null;
+  }
+
+  
+ componentDidUpdate(prevProps, prevState){
+  if(prevProps.error){
+      this.setState({errors: prevProps.errors});
+      
+  }
+
+}
+    onChange(e){
+      e.preventDefault();
+        this.setState({
+          [e.target.name]: e.target.value
+        })
+       
     }
 
-    onChange(e){
-        this.setState({[e.target.name]: e.target.value})
-       
+    handlePreview =(e)=> {
+      let image_as_base64 = URL.createObjectURL(e.target.files[0])
+      this.setState({
+        image_preview: image_as_base64,
+        file : e.target.files[0],
+        fileName : e.target.files[0].name
+
+    })
     }
     
     
     onSubmit(e){
         e.preventDefault();
-        const newInfo = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            occupation: this.state.occupation,
-            phone: this.state.phone,
-            email: this.state.email,
-            summary: this.state.summary,
-            created: this.state.created,
-            lastUpdated: this.state.lastUpdated,
-            street: this.state.street,
-            city: this.state.city,
-            state: this.state.state,
-            country:this.state.country,
-            image: this.state.image
-        }
+        let formData = new FormData();
+        
+            formData.append('file', this.state.file);
+            formData.append('firstName', this.state.firstName);
+            formData.append('lastName', this.state.lastName);
+            formData.append('occupation', this.state.occupation);
+            formData.append('phone', this.state.phone);
+            formData.append('email', this.state.email);
+            formData.append('summary', this.state.summary);
+            formData.append('fileName', this.state.fileName);
+            formData.append('personalImage', this.state.personalImage);
+       
 
-        this.props.createInfo(newInfo, this.props.history)
+        this.props.createInfo(formData, this.props.history)
   
     }
   
@@ -73,9 +91,16 @@ class AddInfo extends Component {
                   <div className={styles.col}>
                     <h4>Create User Info</h4>
                     <hr />
-                    <form onSubmit={this.onSubmit} >
+                  <form onSubmit={this.onSubmit} >
                     <div className={styles.row}>
-                      <input type="file" onChange={this.fileselectedHandler} />
+                    <img src={this.state.image_preview} alt="..." />
+                      <input 
+                      type="file" 
+                    className= "custom-file-input"
+                    name="file"
+                    value = {this.state.personalImage}
+                    onChange={this.handlePreview}/>
+                    <label className="custom-file-label" for="customFile">{this.state.fileName}</label>
                     
                       </div>
                       <div className={styles.row}>
@@ -129,7 +154,7 @@ class AddInfo extends Component {
                         <input
                           type="text"
                           className={errors.occupation ? styles.invalid : styles.input}
-                          placeholder="Job Title"
+                          placeholder="Occupation"
                           name="occupation"
                           value = {this.state.occupation}
                           onChange={this.onChange}
@@ -141,79 +166,12 @@ class AddInfo extends Component {
                         <textarea
                         type="text"
                           className={errors.summary ? styles.invalid : styles.input}
-                          placeholder="Job Description"
+                          placeholder="Career Summary"
                           name="summary"
                           value = {this.state.summary}
                           onChange={this.onChange}
                         />
                         <p className={styles.invalid}>{errors.summary}</p>
-                      </div>
-                      <h4>Address</h4>
-                      <div className={styles.row}>
-                        <input
-                          type="text"
-                          className={styles.input}
-                          placeholder="Street"
-                          name="street"
-                          value = {this.state.street}
-                          onChange={this.onChange}
-                      
-                        />
-                      </div>
-                      <div className={styles.row}>
-                        <input
-                          type="text"
-                          className={styles.input}
-                          placeholder="City"
-                          name="city"
-                          value = {this.state.city}
-                          onChange={this.onChange}
-                      
-                        />
-                      </div>
-                      <div className={styles.row}>
-                        <input
-                          type="text"
-                          className={styles.input}
-                          placeholder="State"
-                          name="state"
-                          value = {this.state.state}
-                          onChange={this.onChange}
-                      
-                        />
-                      </div>
-                      <div className={styles.row}>
-                        <input
-                          type="text"
-                          className={styles.input}
-                          placeholder="Country"
-                          name="country"
-                          value = {this.state.country}
-                          onChange={this.onChange}
-                      
-                        />
-                      </div>
-                      
-                      
-                      <h4>Start Date</h4>
-                      <div className={styles.row}>
-                        <input
-                          type="date"
-                          className={styles.input}
-                          name="created"
-                          value = {this.state.created}
-                          onChange={this.onChange}
-                        />
-                      </div>
-                      <h4>Estimated End Date</h4>
-                      <div className={styles.row}>
-                        <input
-                          type="date"
-                          className={styles.input}
-                          name="lastUpdated"
-                          value = {this.state.lastUpdated}
-                          onChange={this.onChange}
-                        />
                       </div>
                       <input
                         type="submit"

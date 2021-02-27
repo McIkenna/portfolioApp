@@ -10,45 +10,68 @@ class AddWork extends Component {
     constructor(){
         super()
         this.state = {
-        companyName: "",
-        identifier: "",
+        workId:"",
         jobTitle: "",
+        companyName: "",
         jobDescription: "",
+        workImage:"",
         city: "",
         state: "",
         country: "",
         startDate: "",
         endDate: "",
+        file: null,
+        fileName:"",
+        image_preview: "",
         errors: {}
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps){
-        if(nextProps.errors){
-            this.setState({errors: nextProps.errors})
-        }
-    }
+    static getDerivedStateFromProps(nextProps, prevState){
+      if(nextProps.errors){
+          return {errors: nextProps.errors};
+      }
+      else return null;
+  }
 
+  componentDidUpdate(prevProps, prevState){
+    if(prevProps.error){
+        this.setState({errors: prevProps.errors});
+        
+    }
+  
+  }
+  
     onChange(e) {
         this.setState({[e.target.name]: e.target.value})
     }
 
+    handlePreview =(e)=> {
+      let image_as_base64 = URL.createObjectURL(e.target.files[0])
+      this.setState({
+        image_preview: image_as_base64,
+        file : e.target.files[0],
+        fileName : e.target.files[0].name
+
+    })
+    }
+
     onSubmit(e){
         e.preventDefault();
-        const newWork = {
-        companyName: this.state.companyName,
-        jobTitle: this.state.jobTitle,
-        jobDescription: this.state.jobDescription,
-        identifier: this.state.identifier,
-        city: this.state.city,
-        state: this.state.state,
-        country: this.state.country,
-        startDate: this.state.startDate,
-        endDate: this.state.endDate,
-        }
-        this.props.createWork(newWork, this.props.history)
+        
+        let formData = new FormData();
+            formData.append('file', this.state.file);
+            formData.append('companyName', this.state.companyName);
+            formData.append('jobTitle', this.state.jobTitle);
+            formData.append('jobDescription', this.state.jobDescription);
+            formData.append('city', this.state.city);
+            formData.append('state', this.state.state);
+            formData.append('country', this.state.country);
+            formData.append('fileName', this.state.fileName);
+            formData.append('workImage', this.state.workImage);
+        this.props.createWork(formData, this.props.history)
     }
 
     render() {
@@ -63,16 +86,15 @@ class AddWork extends Component {
                     <hr />
                     <form onSubmit={this.onSubmit}>
                     <div className={classes.row}>
-                        <input
-                          type="text"
-                          className={errors.identifier ? classes.invalid : classes.input}
-                          placeholder="identifier"
-                          name="identifier"
-                          value = {this.state.identifier}
-                          onChange={this.onChange}
-                         
-                        />
-                         <p className={classes.invalid}>{errors.companyName}</p>
+                    <img src={this.state.image_preview} alt="..." />
+                      <input 
+                      type="file" 
+                    className= "custom-file-input"
+                    name="file"
+                    value = {this.state.workImage}
+                    onChange={this.handlePreview}/>
+                    <label className="custom-file-label" for="customFile">{this.state.fileName}</label>
+                    
                       </div>
                       <div className={classes.row}>
                         <input

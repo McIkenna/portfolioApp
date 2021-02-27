@@ -94,20 +94,20 @@ input[type="submit"]:hover {
 /* ANother Design */
 
 .main {
-  font-style: normal;
-  letter-spacing: 0;
-  width: 100%;
-}
+  align-items: start;
 
-.cards {
-  list-style: none;
-  width: 100%;
-  margin: 20% 0;
+  justify-content: center;
+  padding: 5%;
 }
 
 .name {
-  color: white;
-  font-size: 1.5rem;
+  color: rgb(7, 7, 7);
+  font-size: 2rem;
   align-items: center;
   align-content: center;
+}
+
+.image {
+  width: 100%;
+  height: 50%;
 }

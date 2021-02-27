@@ -9,43 +9,73 @@ class AddEducation extends Component {
     constructor(){
         super()
         this.state = {
+            eduId:"",
             major: "",
             concentration: "",
             schoolName: "",
             honor: "",
             state: "",
+            city: "",
             country: "",
+            educationImage:"",
             startDate: "",
             endDate: "",
+            file: null,
+            fileName:"",
+            image_preview: "",
             errors: {}
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps){
-        if(nextProps.errors){
-            this.setState({errors: nextProps.errors})
-        }
+  static getDerivedStateFromProps(nextProps, prevState){
+      if(nextProps.errors){
+          return {errors: nextProps.errors};
+      }
+      else return null;
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevProps.error){
+        this.setState({errors: prevProps.errors});
+        
     }
+  }
 
     onChange(e){
         this.setState({[e.target.name]: e.target.value})
     }
 
+    handlePreview =(e)=> {
+      let image_as_base64 = URL.createObjectURL(e.target.files[0])
+      this.setState({
+        image_preview: image_as_base64,
+        file : e.target.files[0],
+        fileName : e.target.files[0].name
+
+    })
+    }
+
     onSubmit(e){
         e.preventDefault();
-        const newEducation = {
-            major: this.state.major,
-            concentration: this.state.concentration,
-            schoolName: this.state.schoolName,
-            honor: this.state.honor,
-            state: this.state.state,
-            country: this.state.country,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
-        }
-        this.props.createEducation(newEducation, this.props.history)
+      
+        let formData = new FormData();
+       
+        formData.append('file', this.state.file);
+        formData.append('major', this.state.major);
+        formData.append('concentration', this.state.concentration);
+        formData.append('schoolName', this.state.schoolName);
+        formData.append('honor', this.state.honor);
+        formData.append('state', this.state.state);
+        formData.append('city', this.state.city);
+        formData.append('country', this.state.country);
+        formData.append('fileName', this.state.fileName);
+        formData.append('educationImage', this.state.educationImage);
+        formData.append('startDate', this.state.startDate);
+        formData.append('endDate', this.state.endDate);
+   
+        this.props.createEducation(formData, this.props.history)
     }
 
     render() {
@@ -59,6 +89,20 @@ class AddEducation extends Component {
                     <h4>Create User Education</h4>
                     <hr />
                     <form onSubmit={this.onSubmit}>
+                    <div className={classes.row}>
+                    <div className={classes.row}>
+                    <img src={this.state.image_preview} alt="..." />
+                      <input 
+                      type="file" 
+                    className= "custom-file-input"
+                    name="file"
+                    value = {this.state.educationImage}
+                    onChange={this.handlePreview}/>
+                    <label className="custom-file-label" for="customFile">{this.state.fileName}</label>
+                    
+                      </div>
+                         <p className={classes.invalid}>{errors.fileName}</p>
+                      </div>
                       <div className={classes.row}>
                         <input
                           type="text"

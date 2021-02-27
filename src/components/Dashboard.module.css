@@ -45,14 +45,13 @@
 }
 
 .skill_cover {
-  background-color: #393e46;
+  background-color: #e2e4e7;
   align-items: center;
   text-align: center;
-  display: none;
 }
 
 .skill_cover h4 {
-  color: whitesmoke;
+  color: rgb(94, 92, 92);
   font-size: 3rem;
   padding-top: 1%;
   font-family: "Courgette", cursive;
@@ -60,8 +59,8 @@
 
 .skill {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  padding: 0 10%;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 0 6%;
 
   border-top: 0.3125rem solid #1c2127;
 }

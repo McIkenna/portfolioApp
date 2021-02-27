@@ -40,12 +40,12 @@
   font-weight: 700;
 }
 .navItem {
-  display: none;
+  display: inline-flex;
 }
 
 .navItem li {
   list-style: none;
-  display: inline-block;
+  display: flex;
 }
 
 @media screen and (max-width: 600px) {

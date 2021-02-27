@@ -7,19 +7,18 @@ import {Provider} from "react-redux";
 import store from "./store"
 import UpdateInfo from './components/Info/UpdateInfo';
 import AddEducation from './components/Education/AddEducation';
+import UpdateEdu from './components/Education/UpdateEdu';
 import AddWork from './components/Work/AddWork';
 import UpdateWork from './components/Work/UpdateWork';
 import AddProject from './components/Project/AddProject';
 import UpdateProject from './components/Project/UpdateProject';
 import AddSkill from './components/Skill/AddSkill';
-import ImageUploader from './components/ProfileImage/ImageUploader';
-
+import UpdateSkill from './components/Skill/UpdateSkill';
 import styles from './app.module.css'
 import Footer from './components/Layout/Footer';
 import contactForm from './components/Contact/contactForm';
 import AddTask from './components/projectTask/AddTask';
 import AddImage from './components/ProfileImage/AddImage';
-import spinner from './components/Spinner/Spinner';
 
 
 function App() {
@@ -46,11 +45,13 @@ function App() {
       <Route exact path="/addInfo" component={AddInfo} />
       <Route exact path="/updateInfo/:id" component={UpdateInfo} />
       <Route exact path="/addEducation" component={AddEducation } />
+      <Route exact path="/updateEdu/:id" component={UpdateEdu} />
       <Route exact path="/addWork" component={AddWork} />
       <Route exact path="/updateWork/:id" component={UpdateWork} />
       <Route exact path="/addProject" component={AddProject} />
       <Route exact path="/updateProject/:id"  component={UpdateProject} />
       <Route exact path="/addSkill" component={AddSkill} />
+      <Route exact path="/updateSkill/:id" component={UpdateSkill} />
       <Route exact path="/addImg" component={AddImage} />
       <Route exact path="/contactForm" component={contactForm} />
       <Route exact path="/addTask" component={AddTask} />

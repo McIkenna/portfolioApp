@@ -1,10 +1,10 @@
 import axios from "axios"
-import { GET_ERRORS, GET_SKILLS } from "./types";
+import { DELETE_SKILL, GET_ERRORS, GET_SKILL, GET_SKILLS } from "./types";
 
-export const createSkill = (skills, history) => async dispatch => {
+export const createSkill = (skill, history) => async dispatch => {
     try {
-        const res = await axios.post("http://portfolioawswebsite-env.eba-cj2sjia3.us-east-2.elasticbeanstalk.com/api/skills", skills )
-        history.push("/dashboard");
+        await axios.post(`http://localhost:8080/api/skill`, skill )
+        history.push("/");
         dispatch({
             type: GET_ERRORS,
             payload: {}
@@ -19,9 +19,50 @@ export const createSkill = (skills, history) => async dispatch => {
 }
 
 export const getSkills = () => async dispatch => {
-    const res = await axios.get(`http://portfolioawswebsite-env.eba-cj2sjia3.us-east-2.elasticbeanstalk.com/api/skills/all`)
+    const res = await axios.get(`http://localhost:8080/api/skill/all`)
     dispatch({
         type: GET_SKILLS,
         payload: res.data
     })
+}
+
+export const getStoredSkill = (skillId, history) => async dispatch => {
+    try {
+     const res = await axios.get(`http://localhost:8080/api/skill/${skillId}`)
+     dispatch({
+         type: GET_SKILL,
+         payload: res.data,
+     })
+    } catch (error) {
+        history.push("/");
+    }
+ };
+ 
+ export const deleteSkill = id => async dispatch => {
+    if(window.confirm("This will delete data Permanent"))
+    {
+        await axios.delete(`http://localhost:8080/api/skill/${id}`)
+    dispatch({
+        type: DELETE_SKILL,
+        payload: id
+    })
+    }
+        
+};
+
+export const updateSkill = (skill, history) => async dispatch => {
+    try {
+        await axios.post(`http://localhost:8080/api/skill`, skill)
+        history.push("/")
+        dispatch({
+            type: GET_ERRORS,
+            payload: {}
+        })
+
+    } catch (error) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: error.response.data
+      })
+    }
 }
