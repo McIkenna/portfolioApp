@@ -3,7 +3,7 @@ import {GET_ERRORS, GET_INFO, GET_STOREDINFO, DELETE_INFO} from "./types";
 
 export const createInfo = (info, history) => async dispatch => {
     try {
-       await axios.post(`http://localhost:8080/api/info`, info)
+       await axios.post(`http://Portfolio-complete-cloud-env.eba-y7qj96hg.us-east-2.elasticbeanstalk.com/admin/info`, info)
         history.push(`/`);
         dispatch({
             type:GET_ERRORS,
@@ -20,7 +20,7 @@ export const createInfo = (info, history) => async dispatch => {
 
 
 export const getInfo = () => async dispatch => {
-  const res = await axios.get(`http://localhost:8080/api/info/all`)
+  const res = await axios.get(`http://Portfolio-complete-cloud-env.eba-y7qj96hg.us-east-2.elasticbeanstalk.com/api/info/all`)
 
         dispatch({
             type: GET_INFO,
@@ -32,7 +32,7 @@ export const getInfo = () => async dispatch => {
 
 export const getStoredInfo = (infoId, history) => async dispatch => {
    try {
-    const res = await axios.get(`http://localhost:8080/api/info/${infoId}`)
+    const res = await axios.get(`http://Portfolio-complete-cloud-env.eba-y7qj96hg.us-east-2.elasticbeanstalk.com/api/info/${infoId}`)
     dispatch({
         type: GET_STOREDINFO,
         payload: res.data,
@@ -45,7 +45,7 @@ export const getStoredInfo = (infoId, history) => async dispatch => {
 export const deleteInfo = id => async dispatch => {
     if(window.confirm("This will delete data Permanent"))
     {
-        await axios.delete(`http://localhost:8080/api/info/${id}`)
+        await axios.delete(`http://Portfolio-complete-cloud-env.eba-y7qj96hg.us-east-2.elasticbeanstalk.com/admin/info/${id}`)
     dispatch({
         type: DELETE_INFO,
         payload: id
@@ -56,7 +56,7 @@ export const deleteInfo = id => async dispatch => {
 
 export const updatePrevInfo = (info, history) => async dispatch => {
     try {
-        await axios.put(`http://localhost:8080/api/info`, info)
+        await axios.put(`http://Portfolio-complete-cloud-env.eba-y7qj96hg.us-east-2.elasticbeanstalk.com/admin/info`, info)
         history.push("/");
         dispatch({
             type: GET_ERRORS,

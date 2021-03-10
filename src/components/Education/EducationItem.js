@@ -14,6 +14,24 @@ class EducationItem extends Component {
     render() {
 
        const {education} = this.props;
+       const {validToken, user} = this.props.security;
+
+        const userIsAuthenticated = (
+               <div>
+          <Link to={`/updateEdu/${education.eduId}`}><button className={styles.button}>Update</button></Link>
+          <button className={styles.button} onClick={this.onDeleteClick.bind(this, education.eduId)}>Delete</button>
+          </div>
+
+        )
+
+       
+        let securedLinks;
+
+        if(validToken&&user){
+            securedLinks = userIsAuthenticated;
+        }else{
+            securedLinks = "";
+        }
       
   return (
   <div className={styles.wrapper}>
@@ -33,9 +51,7 @@ class EducationItem extends Component {
               {education.honor}
             </p>
           </div>
-          <Link to={`/updateEdu/${education.eduId}`}><button className={styles.button}>Update</button></Link>
-			<button className={styles.button} onClick={this.onDeleteClick.bind(this, education.eduId)}>Delete</button>
-	         
+          {securedLinks} 
         </div>
   
 			  
@@ -48,7 +64,11 @@ class EducationItem extends Component {
 }
 
 EducationItem.propTypes = {
-  deleteEdu: PropTypes.func.isRequired
+  deleteEdu: PropTypes.func.isRequired,
+  security: PropTypes.object.isRequired
 }
+const mapStateToProps = state => ({
+  security: state.security
+})
 
-export default connect(null, {deleteEdu})(EducationItem)
+export default connect(mapStateToProps, {deleteEdu})(EducationItem)

@@ -21,7 +21,7 @@ export default function(state = initialState, action){
         case DELETE_SKILL:
             return{
                 ...state,
-                skills: state.skills.filter(skill => skill.skillname !== action.payload)
+                skills: state.skills.filter(skill => skill.skillId !== action.payload)
             }
             default:
                 return state;

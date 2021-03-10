@@ -9,7 +9,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import resume from "../images/Ifekaonwu_Ikenna_resume.pdf"
 import github from "../images/github.png"
-import linkedin from "../images/linkedin.png"
+import linkedin from "../images/linkedin.png";
+
 
  class InfoItem extends Component {
 
@@ -20,6 +21,27 @@ import linkedin from "../images/linkedin.png"
 
     render() {
         const {info} = this.props;
+        const {validToken, user} = this.props.security;
+
+        const userIsAuthenticated = (
+               
+            <div className={classes.infobutton}>
+            <Link to={`/updateInfo/${info.infoId}`}>
+            <button className={classes.updatebtn}>Update</button>
+            </Link>
+            <button className={classes.deletebtn} onClick={this.onDeleteClick.bind(this, info.infoId)}>Delete</button>
+            </div>
+
+        )
+
+       
+        let securedLinks;
+
+        if(validToken&&user){
+            securedLinks = userIsAuthenticated;
+        }else{
+            securedLinks = "";
+        }
         AOS.init({duration: 2000});
         return (
             <Spring
@@ -81,16 +103,8 @@ import linkedin from "../images/linkedin.png"
             <div className={classes.aboutcontainer}>
                 <div className={classes.abouttext} data-aos="fade-up">
                 <p>{info.summary}</p>
-                
-                
-                <div className={classes.infobutton}>
-                <Link to={`/updateInfo/${info.infoId}`}>
-                <button className={classes.updatebtn}>Update</button>
-                </Link>
-                <button className={classes.deletebtn} onClick={this.onDeleteClick.bind(this, info.infoId)}>Delete</button>
-            
-                </div>
-                </div>
+                {securedLinks}
+                         </div>
                 </div>
        
     </div>
@@ -104,6 +118,12 @@ import linkedin from "../images/linkedin.png"
     }
 }
 InfoItem.propTypes ={
-    deleteInfo: PropTypes.func.isRequired
+    deleteInfo: PropTypes.func.isRequired,
+    security: PropTypes.object.isRequired
 }
-export default connect(null, {deleteInfo})(InfoItem)
+
+const mapStateToProps = state => ({
+    security: state.security
+})
+
+export default connect(mapStateToProps, {deleteInfo})(InfoItem)

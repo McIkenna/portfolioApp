@@ -23,6 +23,7 @@ export default function(state=initialState, action){
         case DELETE_EDU:
             return{
                 ...state,
+                educations: state.educations.filter(education => education.eduId !== action.payload)
                 
             }
             

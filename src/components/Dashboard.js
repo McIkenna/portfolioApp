@@ -16,7 +16,7 @@ import {getStoredTasks} from "../actions/ProjectActions"
 import SkillItem from './Skill/SkillItem';
 import Spinner from "./Spinner/Spinner"
 
-import TaskItem from './projectTask/TaskItem';
+
 
 
 
@@ -34,7 +34,7 @@ class Dashboard extends Component {
     this.props.getWorks();
     this.props.getProjects();
     this.props.getSkills();
-    this.props.getStoredTasks();
+   
     this.timerHandle = setTimeout(() => this.setState({ loading: false }), 2000); 
   }
 
@@ -111,7 +111,6 @@ Dashboard.propTypes = {
   getWorks: PropTypes.func.isRequired,
   getProjects: PropTypes.func.isRequired,
   getSkills: PropTypes.func.isRequired,
-  getStoredTasks: PropTypes.func.isRequired,
   
 }
 
@@ -121,7 +120,7 @@ const mapStateToProps = state => ({
   work: state.work,
   project: state.project,
   skill: state.skill,
-  task: state.task,
+
 })
 
-export default connect(mapStateToProps, { getInfo, getAllEducation, getWorks, getProjects, getSkills, getStoredTasks})(Dashboard);
+export default connect(mapStateToProps, { getInfo, getAllEducation, getWorks, getProjects, getSkills})(Dashboard);

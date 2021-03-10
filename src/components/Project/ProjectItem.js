@@ -10,7 +10,25 @@ class ProjectItem extends Component {
 		this.props.deleteProject(id)
 	}
     render() {
-		const {project} = this.props;
+		let {project} = this.props;
+		let {validToken, user} = this.props.security;
+		
+		const userIsAuthenticated = (
+               <div>
+            <Link to={`/updateProject/${project.projectId}`}><button className={classes.button}>Update</button></Link>
+			<button className={classes.button} onClick={this.onDeleteClick.bind(this, project.projectId)}>Delete</button>
+			</div>
+
+        )
+       
+        let securedLinks;
+
+        if(validToken&&user){
+            securedLinks = userIsAuthenticated;
+        }else{
+            securedLinks = "";
+        }
+
         return (
 
 			<div className={classes.container}>
@@ -40,9 +58,7 @@ class ProjectItem extends Component {
 				</div>
 				
 			  </div>
-			  <Link to={`/updateProject/${project.projectId}`}><button className={classes.button}>Update</button></Link>
-			<button className={classes.button} onClick={this.onDeleteClick.bind(this, project.projectId)}>Delete</button>
-	          
+			  {securedLinks}
 			  
 		</div>
 		</div>
@@ -53,7 +69,12 @@ class ProjectItem extends Component {
 }
 
 ProjectItem.propTypes = {
-	deleteProject: PropTypes.func.isRequired
+	deleteProject: PropTypes.func.isRequired,
+	security: PropTypes.object.isRequired
 }
 
-export default connect(null, {deleteProject})(ProjectItem)
+const mapStateToProps = state => ({
+    security: state.security
+})
+
+export default connect(mapStateToProps, {deleteProject})(ProjectItem)

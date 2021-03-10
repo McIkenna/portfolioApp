@@ -3,7 +3,7 @@ import { DELETE_PROJECT, GET_ERRORS, GET_PROJECT, GET_PROJECTS, UPLOAD_TASK, GET
 
 export const createProject = (project, history) => async dispatch => {
     try {
-       await axios.post(`http://localhost:8080/api/project`, project)
+       await axios.post(`http://Portfolio-complete-cloud-env.eba-y7qj96hg.us-east-2.elasticbeanstalk.com/admin/project`, project)
         history.push("/");
         dispatch({
             type: GET_ERRORS,
@@ -19,7 +19,7 @@ export const createProject = (project, history) => async dispatch => {
 }
 
 export const getProjects = () => async dispatch => {
-    const res = await axios.get(`http://localhost:8080/api/project/all`)
+    const res = await axios.get(`http://Portfolio-complete-cloud-env.eba-y7qj96hg.us-east-2.elasticbeanstalk.com/api/project/all`)
     dispatch({
         type: GET_PROJECTS,
         payload: res.data
@@ -28,7 +28,7 @@ export const getProjects = () => async dispatch => {
 
 export const deleteProject = id => async dispatch => {
     if(window.confirm("This will delete Permanent")){
-        await axios.delete(`http://localhost:8080/api/project/${id}`)
+        await axios.delete(`http://Portfolio-complete-cloud-env.eba-y7qj96hg.us-east-2.elasticbeanstalk.com/admin/project/${id}`)
         dispatch({
             type: DELETE_PROJECT,
             payload: id
@@ -38,17 +38,17 @@ export const deleteProject = id => async dispatch => {
 
 export const getStoredProject = (id, history) => async dispatch => {
     try {
-        const res = await axios.get(`http://localhost:8080/api/project/${id}`)
+        const res = await axios.get(`http://Portfolio-complete-cloud-env.eba-y7qj96hg.us-east-2.elasticbeanstalk.com/api/project/${id}`)
         dispatch({
             type: GET_PROJECT,
             payload: res.data
         })
     } catch (error) {
-        history.push("/dashboard");
+        history.push("/");
         
     }
 }
-
+/*
 export const uploadTask = (task, history) => async dispatch => {
     try{
         const res = await axios.post("http://localhost:8080/api/file/uploadFile", task)
@@ -72,11 +72,11 @@ export const getStoredTasks = () => async dispatch =>{
         type: GET_TASKS,
         payload: res.data
     })
-}
+}*/
 
 export const updateProject = (project, history) => async dispatch => {
     try {
-       await axios.post(`http://localhost:8080/api/project`, project)
+       await axios.post(`http://Portfolio-complete-cloud-env.eba-y7qj96hg.us-east-2.elasticbeanstalk.com/admin/project`, project)
         history.push("/");
         dispatch({
             type: GET_ERRORS,

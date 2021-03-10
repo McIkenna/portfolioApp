@@ -33,7 +33,7 @@ class contactForm extends Component {
         }
         if(!this.state.message){
             let confirm = window.confirm("You are about to submit an empty file")
-            if(confirm == true){
+            if(confirm === true){
                 return true;
             }
             else{

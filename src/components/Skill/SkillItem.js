@@ -12,19 +12,33 @@ class SkillItem extends Component {
 }
     render() {
         const {skill} = this.props;
+        const {validToken, user} = this.props.security;
+
+        const userIsAuthenticated = (
+               
+          <div>
+          <Link to={`/updateSkill/${skill.skillId}`}>
+            <button className={styles.updatebtn}>Update</button>
+            </Link>
+            <button className={styles.deletebtn} onClick={this.onDeleteClick.bind(this, skill.skillId)}>Delete</button>
+            </div>
+
+      )
+      let securedLinks;
+
+        if(validToken&&user){
+            securedLinks = userIsAuthenticated;
+        }else{
+            securedLinks = "";
+        }
+
         return (     
 <div className={styles.main}>
   
 
   <img className={styles.image} src={skill.skillImageUrl} alt=""/>
   
-
-<div>
-  <Link to={`/updateSkill/${skill.skillId}`}>
-    <button className={styles.updatebtn}>Update</button>
-    </Link>
-    <button className={styles.deletebtn} onClick={this.onDeleteClick.bind(this, skill.skillId)}>Delete</button>
-    </div>
+{securedLinks}
 
 </div>
         )
@@ -32,7 +46,13 @@ class SkillItem extends Component {
 }
 
 SkillItem.propTypes = {
-  deleteSkill: PropTypes.func.isRequired
+  deleteSkill: PropTypes.func.isRequired,
+  security: PropTypes.object.isRequired
 }
 
-export default connect(null,{deleteSkill})(SkillItem)
+const mapStateToProps = state => ({
+  security: state.security
+})
+
+
+export default connect(mapStateToProps,{deleteSkill})(SkillItem)

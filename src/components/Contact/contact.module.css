@@ -43,6 +43,15 @@ h4 {
   border-radius: 27px;
 }
 
+.input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin-top: 10px;
+  border-radius: 27px;
+}
+
 .summary p:nth-child(1) {
   height: 100%;
   padding: 12px;

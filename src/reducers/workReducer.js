@@ -24,7 +24,7 @@ export default function(state=initialState, action){
             return {
                 ...state,
                 works:state.works.filter(
-                    work => work.identifier !== action.payload
+                    work => work.workId !== action.payload
                 )
             }
         default:

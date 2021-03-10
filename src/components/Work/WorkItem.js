@@ -13,6 +13,27 @@ class WorkItem extends Component {
     }
     render() {
         const {work} = this.props;
+        const {validToken, user} = this.props.security;
+
+        const userIsAuthenticated = (
+               
+          <div className={classes.infobutton}>
+          <Link to={`/updateWork/${work.workId}`}>
+          <button className={classes.updatebtn}>Update</button>
+          </Link>
+          <button className={classes.deletebtn} onClick={this.onDeleteClick.bind(this, work.workId)}>Delete</button>
+             </div>
+
+        )
+
+       
+        let securedLinks;
+
+        if(validToken&&user){
+            securedLinks = userIsAuthenticated;
+        }else{
+            securedLinks = "";
+        }
         
   
 return (
@@ -34,12 +55,7 @@ return (
     <p className={classes.jobTitle}>{work.jobTitle}</p>
     <p>{work.jobDescription}</p>
     </div>
-    <div className={classes.infobutton}>
-    <Link to={`/updateWork/${work.workId}`}>
-    <button className={classes.updatebtn}>Update</button>
-    </Link>
-    <button className={classes.deletebtn} onClick={this.onDeleteClick.bind(this, work.workId)}>Delete</button>
-       </div>
+   {securedLinks}
     </div>
     </div>
    
@@ -55,7 +71,13 @@ return (
 }
 
 WorkItem.propTypes = {
-    deleteWork: PropTypes.func.isRequired
+    deleteWork: PropTypes.func.isRequired,
+    security: PropTypes.object.isRequired
 }
 
-export default connect(null, {deleteWork})(WorkItem)
+const mapStateToProps = state => ({
+  security: state.security
+})
+
+
+export default connect(mapStateToProps, {deleteWork})(WorkItem)

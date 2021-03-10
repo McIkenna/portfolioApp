@@ -24,7 +24,7 @@ export default function(state = initialState, action){
         case DELETE_INFO:
             return{
                 ...state,
-                infos: state.infos.filter(info => info.phone !== action.payload )
+                infos: state.infos.filter(info => info.infoId !== action.payload )
             }
      
       
